@@ -1,9 +1,8 @@
-<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Your Name - Portfolio</title>
+  <title>Spencer Little - Portfolio</title>
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -24,7 +23,7 @@
     <section id="about" class="section">
       <div class="container">
         <h2>About Me</h2>
-        <p>Add your introduction and description here.</p>
+        <p>I love robotics, rockets, and electionics. I learn more from projetcs then most people can learn in school and love what I do.</p>
       </div>
     </section>
 
@@ -32,12 +31,12 @@
       <div class="container">
         <h2>Projects</h2>
         <div class="project">
-          <h3>Project 1</h3>
-          <p>Description of Project 1.</p>
+          <h3>Quadruped Robot Dog</h3>
+          <p>Using PID controled brushed motor to make Quadrupeds cheaper.</p>
         </div>
         <div class="project">
-          <h3>Project 2</h3>
-          <p>Description of Project 2.</p>
+          <h3>Fun 3 Pound Battle Bot</h3>
+          <p>Making a vertical spinner 3 pound battle bot for under 150. Controlled by an ESP32 and a xbox controller.</p>
         </div>
         <!-- Add more projects as needed -->
       </div>
@@ -46,7 +45,8 @@
     <section id="contact" class="section">
       <div class="container">
         <h2>Contact Me</h2>
-        <p>Email: yourname@example.com</p>
+        <p>Email: SpencerWLittle@gmail.com</p>
+        <p>Linkedin: https://www.linkedin.com/in/spencer-little-39686a255/ </p>
         <!-- Add more contact information or a contact form -->
       </div>
     </section>
