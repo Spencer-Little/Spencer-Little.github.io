@@ -8,7 +8,7 @@
 <body>
   <header>
     <div class="container">
-      <h1>Your Name</h1>
+      <h1>Spencer Little</h1>
       <nav>
         <ul>
           <li><a href="#about">About</a></li>
