@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Engineering Project Board and Resume</title>
+  <title>Spencer's Project Board/ Resume</title>
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
 </head>
@@ -28,8 +28,8 @@
   <!-- Hero Section -->
   <header>
     <div class="container mx-auto px-6 text-center">
-      <h1 class="text-4xl font-bold">Hello, I'm John Doe</h1>
-      <p class="mt-4 text-lg">Software Engineer | Full Stack Developer</p>
+      <h1 class="text-4xl font-bold">Hello, I'm Spencer Little</h1>
+      <p class="mt-4 text-lg">Studiing Electrical Engineering | A Love of Robotics, Rockets, and Electronics</p>
     </div>
   </header>
 
@@ -40,13 +40,13 @@
       <div class="grid">
         <div>
           <h3>Education</h3>
-          <p>Bachelor of Science in Computer Science</p>
-          <p>University of XYZ, 2016-2020</p>
+          <p>Electrical Engineering</p>
+          <p>University of Massachusetts Amherst</p>
         </div>
         <div>
           <h3>Experience</h3>
-          <p>Software Engineer at ABC Corp</p>
-          <p>2020-Present</p>
+          <p>Robotic Engineer at ChemGenes</p>
+          <p>June2024-Present</p>
         </div>
         <div>
           <h3>Skills</h3>
