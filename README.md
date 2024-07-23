@@ -1,97 +1,50 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Spencer's Project Board/ Resume</title>
-  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Name - Projects and Resume</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
-  <!-- Navbar -->
-  <nav>
-    <div class="container mx-auto px-6 py-3">
-      <div class="flex justify-between items-center">
-        <div class="text-lg font-semibold">
-          <a href="#" class="text-gray-800">My Portfolio</a>
-        </div>
-        <div class="flex space-x-4">
-          <a href="#resume" class="text-gray-600 hover:text-gray-800">Resume</a>
-          <a href="#projects" class="text-gray-600 hover:text-gray-800">Projects</a>
-          <a href="#contact" class="text-gray-600 hover:text-gray-800">Contact</a>
-        </div>
-      </div>
-    </div>
-  </nav>
-
-  <!-- Hero Section -->
-  <header>
-    <div class="container mx-auto px-6 text-center">
-      <h1 class="text-4xl font-bold">Hello, I'm Spencer Little</h1>
-      <p class="mt-4 text-lg">Studiing Electrical Engineering | A Love of Robotics, Rockets, and Electronics</p>
-    </div>
-  </header>
-
-  <!-- Resume Section -->
-  <section id="resume">
-    <div class="container mx-auto px-6">
-      <h2>Resume</h2>
-      <div class="grid">
-        <div>
-          <h3>Education</h3>
-          <p>Electrical Engineering</p>
-          <p>University of Massachusetts Amherst</p>
-        </div>
-        <div>
-          <h3>Experience</h3>
-          <p>Robotic Engineer at ChemGenes</p>
-          <p>June2024-Present</p>
-        </div>
-        <div>
-          <h3>Skills</h3>
-          <p>JavaScript, React, Node.js, Python, Django, SQL</p>
-        </div>
-        <div>
-          <h3>Contact</h3>
-          <p>Email: john.doe@example.com</p>
-          <p>Phone: (123) 456-7890</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Projects Section -->
-  <section id="projects">
-    <div class="container mx-auto px-6">
-      <h2>Projects</h2>
-      <div class="grid">
-        <div>
-          <h3>Project One</h3>
-          <p>Description of project one.</p>
-          <a href="https://github.com/username/project-one" class="text-blue-500 hover:underline">GitHub Repo</a>
-        </div>
-        <div>
-          <h3>Project Two</h3>
-          <p>Description of project two.</p>
-          <a href="https://github.com/username/project-two" class="text-blue-500 hover:underline">GitHub Repo</a>
-        </div>
-        <!-- Add more projects as needed -->
-      </div>
-    </div>
-  </section>
-
-  <!-- Footer -->
-  <footer>
-    <div class="container mx-auto px-6 text-center">
-      <p>&copy; 2024 John Doe. All rights reserved.</p>
-      <div class="flex justify-center space-x-4 mt-4">
-        <a href="https://linkedin.com/in/username" class="text-gray-400 hover:text-white">LinkedIn</a>
-        <a href="https://github.com/username" class="text-gray-400 hover:text-white">GitHub</a>
-        <a href="mailto:john.doe@example.com" class="text-gray-400 hover:text-white">Email</a>
-      </div>
-    </div>
-  </footer>
-
+    <header>
+        <h1>Your Name</h1>
+        <nav>
+            <ul>
+                <li><a href="#about">About Me</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#resume">Resume</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section id="about">
+            <h2>About Me</h2>
+            <p>Insert a brief introduction about yourself here.</p>
+        </section>
+        <section id="projects">
+            <h2>Projects</h2>
+            <ul>
+                <li><strong>Quadruped Robot Dog:</strong> A project aimed at creating a cheap yet useful quadruped robot dog.</li>
+                <li><strong>3-Pound Battle Bot:</strong> A battle bot controlled using an Xbox controller.</li>
+                <li><strong>ESP-C6 Microcontroller Projects:</strong> Various projects using the ESP-C6 microcontroller in Arduino.</li>
+                <li><strong>ROS 2 Turtle Program:</strong> A ROS 2 program to control a turtle and track its movements.</li>
+            </ul>
+        </section>
+        <section id="resume">
+            <h2>Resume</h2>
+            <p><a href="resume.pdf" download>Download My Resume</a></p>
+        </section>
+        <section id="contact">
+            <h2>Contact</h2>
+            <p>Email: your.email@example.com</p>
+            <p>LinkedIn: <a href="https://www.linkedin.com/in/yourprofile">Your LinkedIn</a></p>
+            <p>GitHub: <a href="https://github.com/yourusername">yourusername</a></p>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2024 Your Name</p>
+    </footer>
 </body>
 </html>
