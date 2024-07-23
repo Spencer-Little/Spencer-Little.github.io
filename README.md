@@ -21,8 +21,11 @@
     <main>
         <section id="about">
             <h2>About Me</h2>
-            <p>Insert a brief introduction about yourself here.</p>
+                <p>Hello! I'm a passionate college student and robotic engineer intern with a strong interest in robotics, electronics, and engineering. Currently, I am an intern at Chemegenes, where I design and create PC layouts, control robotic systems, and use sensors and data for lab automation.</p>
+                <p>My favorite project involves developing a quadruped robot dog, where I handle everything from electronics to CAD and design. I have experience with ROS 2, Arduino, and ESP-C6 microcontrollers. Additionally, I am an active member of the UMass Rocket Team, contributing significantly to both the physical and electrical design aspects of our projects.</p>
+                <p>Outside of my technical pursuits, I enjoy working on battle bots, exploring new technologies, and constantly challenging myself with new projects. I'm excited to share my work and experiences with you through this website.</p>
         </section>
+
         <section id="projects">
             <h2>Projects</h2>
             <ul>
