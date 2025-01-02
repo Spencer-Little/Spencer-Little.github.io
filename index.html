@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Cool Background on GitHub Pages</title>
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        overflow: hidden; /* so we can do full-screen canvas */
+      }
+      /* Place your actual content on top */
+      .content {
+        position: absolute;
+        z-index: 1;
+        top: 50px;
+        left: 50px;
+        color: white;
+        font-family: sans-serif;
+      }
+      /* Canvas behind everything */
+      canvas {
+        position: fixed;
+        top: 0;
+        left: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <canvas id="bgCanvas"></canvas>
+    <div class="content">
+      <h1>My Resume</h1>
+      <p>Here's some info about me...</p>
+    </div>
+    <script src="main.js"></script>
+  </body>
+</html>
