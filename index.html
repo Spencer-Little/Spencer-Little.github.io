@@ -1,21 +1,40 @@
 <!DOCTYPE html>
-<html>
-  <head>
+<html lang="en">
+<head>
     <meta charset="UTF-8">
-    <title>Click to Create Circles</title>
-    <style>
-      body {
-        margin: 0;
-        padding: 0;
-        overflow: hidden; /* full-screen canvas */
-      }
-      canvas {
-        display: block; /* remove scrollbars, take full window */
-      }
-    </style>
-  </head>
-  <body>
-    <canvas id="bgCanvas"></canvas>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio and Fun Zone</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <div class="half portfolio">
+            <header>
+                <h1>My Projects</h1>
+            </header>
+            <main>
+                <!-- Include project descriptions here -->
+                <section id="about">
+                    <h2>About Me</h2>
+                    <p>Self-motivated electrical engineer...</p>
+                </section>
+                <section id="projects">
+                    <h2>Projects</h2>
+                    <ul>
+                        <li><strong>Quadruped Robot Dog:</strong> A project aimed...</li>
+                        <!-- Other projects -->
+                    </ul>
+                </section>
+                <section id="resume">
+                    <h2>Resume</h2>
+                    <p><a href="resume.pdf" download>Download My Resume</a></p>
+                </section>
+            </main>
+        </div>
+        <div class="half fun">
+            <canvas id="bgCanvas"></canvas>
+        </div>
+    </div>
     <script src="main.js"></script>
-  </body>
+</body>
 </html>
