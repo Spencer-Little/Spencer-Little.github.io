@@ -18,8 +18,8 @@ body {
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   gap: 20px;
   padding: 20px;
-  position: relative; /* To ensure it's above the arm if z-index isn't solely relied upon */
-  z-index: 10; /* Higher than the robot arm */
+  position: relative; 
+  z-index: 20; /* Highest */
 }
 
 .portfolio-item {
@@ -29,48 +29,126 @@ body {
   border-radius: 5px;
 }
 
-/* Robot Arm Styles */
+/* Physics Scene Styles */
+#physics-elements-container {
+  position: relative;
+  width: 100%;
+  height: 400px; /* Adjusted height for better visibility */
+  margin-top: 30px; /* Space below portfolio */
+  background-color: #f0f0f0; /* Light grey background for the scene */
+  border: 1px solid #ccc;
+  overflow: hidden; /* To see elements only within this container */
+}
+
+#physics-table {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 300px;
+  height: 150px; 
+}
+
+#table-top {
+  width: 100%; 
+  height: 30px; 
+  background-color: #8B4513; /* SaddleBrown */
+  border-radius: 5px 5px 0 0; 
+  position: absolute;
+  top: 0;
+  left: 0; /* Ensure it aligns with #physics-table */
+}
+
+.table-leg {
+  width: 20px; 
+  height: 120px; /* 150 (table height) - 30 (table-top height) */
+  background-color: #8B4513;
+  position: absolute;
+  top: 30px; 
+}
+
+#table-leg-left {
+  left: 10px; 
+}
+
+#table-leg-right {
+  right: 10px; 
+}
+
+.physics-cube {
+  width: 30px;
+  height: 30px;
+  background-color: #ADD8E6; /* LightBlue */
+  border: 1px solid #000;
+  position: absolute;
+  /* left and top will be set by JavaScript */
+  /* Example initial positions for testing - remove later */
+  /* left: 100px; top: 240px;  */
+}
+
+/* Updated Robot Arm Styles */
 #robot-arm {
-  position: fixed;
-  left: 0;
-  top: 50%;
-  transform: translateY(-50%);
+  position: absolute;
+  /* Initial position estimate: center of table-top, base is 30x30. table-top height is 30px. */
+  /* So, top of arm-base should be at top of table-top. */
+  /* Robot-arm container's top will be relative to where arm-base's center should be. */
+  /* If arm-base is 30x30, its center is 15px from its top. */
+  /* If arm-base center is at table-top's center (y-wise), then arm-base top is 0. */
+  /* Robot-arm container top should be table-top's top (which is 0 for #physics-table) minus arm-base height/2 if base is centered */
+  left: 150px; /* Centered on the table (table width 300px / 2) */
+  top: -15px; /* Positioned so the base (30px high) sits on top of the table-top (which is at y=0 of its parent #physics-table) */
+              /* (table-top y:0 relative to #physics-table, arm relative to #physics-elements-container) */
+              /* This needs to be relative to #physics-elements-container, and table is at bottom. */
+              /* Table top is at 250px from top of container (400 container height - 150 table height) */
+              /* So robot arm needs to be at top of table: left: 50% of table, top: 250px - base_height/2 for center */
+  /* The left/top for #robot-arm will be set by JS to precisely position the arm base. */
+  /* For now, set it relative to the #physics-elements-container for initial placement */
+  /* Assuming table-top is at y=250px from container top (400-150) */
+  /* And arm-base is 30x30. If base center is on table-top center: */
+  /* Arm-base center: left: 150px (relative to table), top: 15px (relative to table-top start) */
+  /* Robot-arm container (which is the pivot point for link1) should align with arm-base's center. */
+  /* So, left: (table_left_in_container + 150px), top: (table_top_y_in_container + 15px) */
+  /* This will be set by JS. For CSS, just a placeholder or initial rough position: */
+  left: 50%; /* Placeholder, JS will adjust */
+  top: 200px; /* Placeholder, JS will adjust */
   width: auto;
   height: auto;
-  z-index: 1; /* Ensure it's above general content but can be below modals/navs if needed */
+  z-index: 15; /* Below portfolio, above physics elements container */
 }
 
 #arm-base {
-  width: 30px;
+  width: 30px; /* Keeping size for now */
   height: 30px;
-  background-color: #555; /* Dark grey */
-  border-radius: 50%; /* Make it circular */
+  background-color: #555; 
+  border-radius: 50%; 
   position: absolute;
-  top: 50%; /* Relative to #robot-arm container */
-  left: 0px; /* At the very left of the #robot-arm container */
-  transform: translate(-50%, -50%); /* Center the base circle on its own coordinates */
+  /* Centered within #robot-arm container, which is now the pivot point */
+  top: 50%; 
+  left: 50%; 
+  transform: translate(-50%, -50%); 
 }
 
 #link1 {
-  width: 120px; /* Length of the first link */
-  height: 20px; /* Thickness of the link */
-  background-color: #777; /* Medium grey */
+  width: 240px; /* Doubled from 120px */
+  height: 40px; /* Doubled from 20px */
+  background-color: #777; 
   position: absolute;
-  left: 0; /* Starts at the arm's base origin */
-  top: 50%; /* Vertically centered relative to #robot-arm's top */
-  transform-origin: left center; /* Rotates around its left endpoint */
-  transform: translateY(-50%) rotate(0deg); /* Initial position, adjust Y to center its thickness */
-  border-radius: 10px; /* Rounded ends */
+  /* Starts from the center of arm-base, which is the #robot-arm's origin */
+  left: 0; 
+  top: 50%; 
+  transform-origin: left center; 
+  transform: translateY(-50%) rotate(0deg); 
+  border-radius: 20px; /* Adjusted for new height */
 }
 
 #link2 {
-  width: 100px; /* Length of the second link */
-  height: 20px; /* Thickness of the link */
-  background-color: #999; /* Light grey */
+  width: 200px; /* Doubled from 100px */
+  height: 40px; /* Doubled from 20px */
+  background-color: #999; 
   position: absolute;
-  left: 120px; /* Initially positioned at the end of link1, this will be updated by JS */
-  top: 50%; /* Vertically centered relative to #robot-arm's top */
-  transform-origin: left center; /* Rotates around its left endpoint (joint with link1) */
-  transform: translateY(-50%) rotate(0deg); /* Initial position, adjust Y to center its thickness */
-  border-radius: 10px; /* Rounded ends */
+  left: 240px; /* New width of link1 */
+  top: 50%; 
+  transform-origin: left center; 
+  transform: translateY(-50%) rotate(0deg); 
+  border-radius: 20px; /* Adjusted for new height */
 }
