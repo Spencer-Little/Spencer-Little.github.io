@@ -36,6 +36,8 @@ document.addEventListener('DOMContentLoaded', () => {
   const FRICTION = 0.9; 
   const CUBE_BOUNCE = 0.3;
   const ARM_PUSH_FORCE = 2;
+  const CUBE_COLLISION_EPSILON = 0.1; // For cube-cube collision distance check
+  const POSITIONAL_CORRECTION_FACTOR = 0.3; // For cube-cube positional correction
 
   // --- Helper Functions ---
   function checkRectCollision(rect1, rect2) {
@@ -90,32 +92,44 @@ document.addEventListener('DOMContentLoaded', () => {
     tableTopScreenY = containerRect.top + (containerRect.height - TABLE_HEIGHT); 
 
     baseX = tableScreenX + TABLE_WIDTH / 2; // Arm pivot X (center of table)
-    baseY = tableTopScreenY;                // Arm pivot Y (surface of table top)
-
-    robotArmElement.style.left = `${baseX - (armBaseElement.offsetWidth / 2)}px`;
-    robotArmElement.style.top = `${baseY - (armBaseElement.offsetHeight / 2)}px`;
+    
+    // New positioning for #robot-arm and baseY (IK pivot)
+    // Position #robot-arm so the BOTTOM of armBaseElement sits on tableTopScreenY
+    robotArmElement.style.left = `${baseX - (armBaseElement.offsetWidth / 2)}px`; // Stays the same
+    robotArmElement.style.top = `${tableTopScreenY - armBaseElement.offsetHeight}px`;
+    
+    // Set baseY (IK pivot) to be the CENTER of armBaseElement
+    baseY = tableTopScreenY - armBaseElement.offsetHeight / 2;
     
     tableRect.x = tableScreenX;
     tableRect.y = tableTopScreenY;
 
     cubes.forEach((cube, index) => {
-      cube.x = tableRect.x + tableRect.width / 2 - CUBE_SIZE / 2; 
-      cube.y = tableRect.y - (index + 1) * CUBE_SIZE; 
+      // Set initial positions directly on the cube object first
+      cube.initialX = tableRect.x + tableRect.width / 2 - CUBE_SIZE / 2; 
+      cube.initialY = tableRect.y - (index + 1) * CUBE_SIZE; // index 0 is the top cube
+      
+      cube.x = cube.initialX;
+      cube.y = cube.initialY;
+      
       cube.element.style.left = `${cube.x}px`;
       cube.element.style.top = `${cube.y}px`;
       cube.vx = 0; cube.vy = 0;
     });
   }
   
+  // Initialize cube objects
   for (let i = 0; i < cubeElements.length; i++) {
     cubes.push({
       element: cubeElements[i],
-      x: 0, y: 0, width: CUBE_SIZE, height: CUBE_SIZE,
+      x: 0, y: 0, // These will be properly set by updateScreenCoordinatesAndLayout
+      initialX: 0, initialY: 0, // Initialize properties
+      width: CUBE_SIZE, height: CUBE_SIZE,
       vx: 0, vy: 0
     });
   }
 
-  updateScreenCoordinatesAndLayout();
+  updateScreenCoordinatesAndLayout(); // This will now set initialX, initialY, x, y for all cubes
 
   function updateArmPosition(mouseX, mouseY) {
     const targetX = mouseX - baseX;
@@ -181,20 +195,25 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // --- Physics Loop ---
   function updatePhysics() {
+    // 1. Get arm link bounding boxes (after CSS transforms are applied)
     const link1Rect = link1Element.getBoundingClientRect();
     const link2Rect = link2Element.getBoundingClientRect();
 
+    // Loop 1: Apply gravity, then handle Arm-Cube Collisions
     cubes.forEach(cube => {
-      cube.vy += GRAVITY;
+      cube.vy += GRAVITY; // Apply gravity
+
       const cubeRect = { x: cube.x, y: cube.y, width: cube.width, height: cube.height };
+      
+      // Arm-Cube Collision (restored)
       if (checkRectCollision(link1Rect, cubeRect)) {
         let pushDirX = cubeRect.x + cubeRect.width/2 - (link1Rect.left + link1Rect.width/2);
         let pushDirY = cubeRect.y + cubeRect.height/2 - (link1Rect.top + link1Rect.height/2);
         let len = Math.sqrt(pushDirX*pushDirX + pushDirY*pushDirY);
         if (len > 0) { pushDirX /= len; pushDirY /= len; }
         cube.vx += pushDirX * ARM_PUSH_FORCE;
-        cube.vy += pushDirY * ARM_PUSH_FORCE / 2; 
-        cube.y -= 0.5; 
+        cube.vy += pushDirY * ARM_PUSH_FORCE / 2; // Less vertical push
+        cube.y -= 0.5; // Positional correction to reduce sinking
       }
       if (checkRectCollision(link2Rect, cubeRect)) {
         let pushDirX = cubeRect.x + cubeRect.width/2 - (link2Rect.left + link2Rect.width/2);
@@ -203,60 +222,126 @@ document.addEventListener('DOMContentLoaded', () => {
         if (len > 0) { pushDirX /= len; pushDirY /= len; }
         cube.vx += pushDirX * ARM_PUSH_FORCE;
         cube.vy += pushDirY * ARM_PUSH_FORCE / 2;
-        cube.y -= 0.5; 
+        cube.y -= 0.5; // Positional correction
       }
     });
 
+    // Loop 2: Cube-Cube Collisions (restored)
     for (let i = 0; i < cubes.length; i++) {
       for (let j = i + 1; j < cubes.length; j++) {
         const cubeA = cubes[i]; const cubeB = cubes[j];
+        // For cube-cube, we use their current physics positions (cubeA.x, cubeA.y)
+        // not their rendered positions via getBoundingClientRect(),
+        // as those might lag or be affected by non-physics transforms.
         const cubeARect = { x: cubeA.x, y: cubeA.y, width: cubeA.width, height: cubeA.height };
         const cubeBRect = { x: cubeB.x, y: cubeB.y, width: cubeB.width, height: cubeB.height };
+
         if (checkRectCollision(cubeARect, cubeBRect)) {
           let dx = (cubeA.x + cubeA.width/2) - (cubeB.x + cubeB.width/2);
           let dy = (cubeA.y + cubeA.height/2) - (cubeB.y + cubeB.height/2);
           let dist = Math.sqrt(dx*dx + dy*dy);
-          if (dist === 0) dist = 0.001; 
-          let normalX = dx / dist; let normalY = dy / dist;
+
+          let normalX, normalY;
+          if (dist < CUBE_COLLISION_EPSILON) {
+            // If cubes are too close or perfectly overlapped, assign a default normal
+            // This prevents division by zero or very small numbers if dist is tiny.
+            // A common strategy is to separate along a fixed axis or a random one.
+            // We'll use a fixed axis (e.g., X-axis) or skip if truly problematic.
+            // For simplicity, if dist is very small, we just use a default normal.
+            // Or, if dx and dy are both zero, assign a default normal.
+            normalX = 1; 
+            normalY = 0;
+            if (dx === 0 && dy === 0) { // If centers are identical
+                // no clear direction, could skip or apply a default push
+            } else if (dist < CUBE_COLLISION_EPSILON && dist > 0) { // If very close but not zero
+                 normalX = dx / dist; // Still try to use direction if possible
+                 normalY = dy / dist;
+            }
+            // If dist was truly 0 and became epsilon, dx/dist might still be an issue if dx was also 0.
+            // Let's refine: if dist is near zero, but dx,dy give some direction, use it.
+            // If dx,dy are also zero, then default.
+            if (dist < CUBE_COLLISION_EPSILON) {
+                if (dx === 0 && dy === 0) { // Truly overlapped
+                    normalX = 1; normalY = 0; // Default separation axis
+                    dist = CUBE_COLLISION_EPSILON; // Ensure dist is not zero for overlap calculation
+                } else { // Very close, use calculated normal but ensure dist isn't too small for division
+                    let actualDist = dist < 0.0001 ? 0.0001 : dist; // Guard against true zero for division
+                    normalX = dx / actualDist;
+                    normalY = dy / actualDist;
+                }
+            }
+
+          } else {
+            normalX = dx / dist;
+            normalY = dy / dist;
+          }
+          
           let relativeVelocityX = cubeA.vx - cubeB.vx;
           let relativeVelocityY = cubeA.vy - cubeB.vy;
           let speed = relativeVelocityX * normalX + relativeVelocityY * normalY;
+
           if (speed < 0) { // Cubes are moving towards each other
-            // For equal mass objects, the collision response simplifies:
-            // they effectively swap momentum components along the collision normal.
-            // impulse = speed (derived from the 1D elastic collision formula for equal masses)
             let impulse = speed; 
             cubeA.vx -= impulse * normalX; cubeA.vy -= impulse * normalY;
             cubeB.vx += impulse * normalX; cubeB.vy += impulse * normalY;
           }
+          
+          // Positional Correction
+          // Note: CUBE_SIZE is diameter. Collision occurs when dist < CUBE_SIZE.
           let overlap = CUBE_SIZE - dist; 
-          if (overlap > 0.01) {
-            let correctionX = (overlap / 2) * normalX; let correctionY = (overlap / 2) * normalY;
-            cubeA.x += correctionX; cubeA.y += correctionY;
-            cubeB.x -= correctionX; cubeB.y -= correctionY;
+          if (overlap > 0.01) { // Only correct if overlap is significant
+            // Apply a fraction of the overlap for smoother correction
+            let correctionStep = (overlap * POSITIONAL_CORRECTION_FACTOR) / 2.0;
+            
+            cubeA.x += correctionStep * normalX; 
+            cubeA.y += correctionStep * normalY;
+            cubeB.x -= correctionStep * normalX; 
+            cubeB.y -= correctionStep * normalY;
           }
         }
       }
     }
 
+    // Loop 3: Update Positions, Table Collision, Render
     cubes.forEach(cube => {
-      cube.x += cube.vx; cube.y += cube.vy;
+      cube.x += cube.vx; 
+      cube.y += cube.vy;
+
+      // Apply basic friction (damping) to horizontal movement
       cube.vx *= FRICTION; 
       if (Math.abs(cube.vx) < 0.1) cube.vx = 0;
+
+      // Cube-Table Collision
       if (cube.y + cube.height > tableRect.y &&
           cube.x + cube.width > tableRect.x &&
           cube.x < tableRect.x + tableRect.width) {
-        if (cube.vy > 0) {
+        
+        if (cube.vy > 0) { // Only apply collision if moving downwards
             cube.y = tableRect.y - cube.height;
-            cube.vy *= -CUBE_BOUNCE;
-            if (Math.abs(cube.vy) < 1) cube.vy = 0;
-            cube.vx *= FRICTION;
-            if (Math.abs(cube.vx) < 0.1) cube.vx = 0;
+            cube.vy *= -CUBE_BOUNCE; // Bounce
+            if (Math.abs(cube.vy) < 1) cube.vy = 0; // Rest threshold
+            
+            // Apply friction when on table
+            if (cube.vy === 0) { 
+                cube.vx *= FRICTION;
+                if (Math.abs(cube.vx) < 0.1) cube.vx = 0;
+            }
         }
       }
+
+      // Reset cube if it falls off the bottom of the screen
+      if (cube.y + cube.height > window.innerHeight + CUBE_SIZE) { // Give a little buffer
+        cube.x = cube.initialX;
+        cube.y = cube.initialY;
+        cube.vx = 0;
+        cube.vy = 0;
+      }
+      
+      // Render Cube Position
       cube.element.style.left = `${cube.x}px`;
       cube.element.style.top = `${cube.y}px`;
     });
+
     requestAnimationFrame(updatePhysics);
   }
 
