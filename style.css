@@ -1,0 +1,76 @@
+body {
+  font-family: sans-serif;
+  margin: 0;
+  background-color: #fff;
+  color: #333;
+}
+
+.container {
+  width: 80%;
+  margin: auto;
+  overflow: hidden;
+  padding: 0 20px;
+}
+
+/* Portfolio Styles */
+.portfolio-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+  padding: 20px;
+  position: relative; /* To ensure it's above the arm if z-index isn't solely relied upon */
+  z-index: 10; /* Higher than the robot arm */
+}
+
+.portfolio-item {
+  background-color: #f4f4f4;
+  border: 1px solid #ddd;
+  padding: 15px;
+  border-radius: 5px;
+}
+
+/* Robot Arm Styles */
+#robot-arm {
+  position: fixed;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: auto;
+  height: auto;
+  z-index: 1; /* Ensure it's above general content but can be below modals/navs if needed */
+}
+
+#arm-base {
+  width: 30px;
+  height: 30px;
+  background-color: #555; /* Dark grey */
+  border-radius: 50%; /* Make it circular */
+  position: absolute;
+  top: 50%; /* Relative to #robot-arm container */
+  left: 0px; /* At the very left of the #robot-arm container */
+  transform: translate(-50%, -50%); /* Center the base circle on its own coordinates */
+}
+
+#link1 {
+  width: 120px; /* Length of the first link */
+  height: 20px; /* Thickness of the link */
+  background-color: #777; /* Medium grey */
+  position: absolute;
+  left: 0; /* Starts at the arm's base origin */
+  top: 50%; /* Vertically centered relative to #robot-arm's top */
+  transform-origin: left center; /* Rotates around its left endpoint */
+  transform: translateY(-50%) rotate(0deg); /* Initial position, adjust Y to center its thickness */
+  border-radius: 10px; /* Rounded ends */
+}
+
+#link2 {
+  width: 100px; /* Length of the second link */
+  height: 20px; /* Thickness of the link */
+  background-color: #999; /* Light grey */
+  position: absolute;
+  left: 120px; /* Initially positioned at the end of link1, this will be updated by JS */
+  top: 50%; /* Vertically centered relative to #robot-arm's top */
+  transform-origin: left center; /* Rotates around its left endpoint (joint with link1) */
+  transform: translateY(-50%) rotate(0deg); /* Initial position, adjust Y to center its thickness */
+  border-radius: 10px; /* Rounded ends */
+}
