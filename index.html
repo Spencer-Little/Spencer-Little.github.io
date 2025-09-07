@@ -1,138 +1,165 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Spencer Little Portfolio</title>
-    <link rel="stylesheet" href="styles.css">
-    <style>
-        body {
-            margin: 0;
-            font-family: Arial, sans-serif;
-            display: flex;
-            height: 100vh;
-        }
-
-        .container {
-            display: flex;
-            width: 100%;
-        }
-
-        .portfolio {
-            width: 50%;
-            padding: 20px;
-            background-color: #f4f4f4;
-            overflow-y: auto;
-            box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
-        }
-
-        .portfolio h1 {
-            text-align: center;
-            margin-bottom: 20px;
-            color: #333;
-        }
-
-        .portfolio section {
-            margin-bottom: 30px;
-        }
-
-        .portfolio h2 {
-            color: #555;
-            margin-bottom: 10px;
-        }
-
-        .project {
-            margin-bottom: 15px;
-            padding: 15px;
-            background: #fff;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-        }
-
-        .project h3 {
-            margin: 0;
-            font-size: 1.2em;
-            color: #333;
-        }
-
-        .project p {
-            margin: 5px 0;
-            color: #666;
-            font-size: 0.95em;
-        }
-
-        .project ul {
-            padding-left: 20px;
-        }
-
-        .project ul li {
-            margin-bottom: 5px;
-        }
-
-        .fun {
-            width: 50%;
-            position: relative;
-            background-color: black;
-        }
-
-        canvas {
-            display: block;
-            width: 100%;
-            height: 100%;
-        }
-    </style>
-</head>
-<body>
-    <div class="container">
-        <div class="portfolio">
-            <h1>Spencer Little Portfolio</h1>
-
-            <section id="about">
-                <h2>About Me</h2>
-                <p>Self-motivated electrical engineer with a passion for robotics, rockets, and semiconductors. Experienced in project development, PCB design, and advanced robotic systems. Excited to bring innovative ideas to the forefront of technology industries.</p>
-            </section>
-
-            <section id="projects">
-                <h2>Projects</h2>
-
-                <div class="project">
-                    <h3>Quadruped Robot Dog</h3>
-                    <p>A 12-DOF robot dog using serial bus servo motors designed for cost-effective robotics with multiple iterations.</p>
-                </div>
-
-                <div class="project">
-                    <h3>Electric Go-Kart</h3>
-                    <p>A 48-volt electric go-kart project focusing on metalworking with minimal tools.</p>
-                </div>
-
-                <div class="project">
-                    <h3>Homemade PCB</h3>
-                    <p>Designed, printed, and etched custom PCBs for various electronics applications using ferric chloride.</p>
-                </div>
-
-                <div class="project">
-                    <h3>PID Controller</h3>
-                    <p>Developed a PID controller for brushed motors with Hall effect encoders for robotics applications.</p>
-                </div>
-
-                <div class="project">
-                    <h3>Graphene Experiments</h3>
-                    <p>Produced graphene for experiments in DIY rocket nozzles and explored applications in material science.</p>
-                </div>
-            </section>
-
-            <section id="resume">
-                <h2>Resume</h2>
-                <p><a href="resume.pdf" download>Download My Resume</a></p>
-            </section>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Spencer Little — Projects & Publications</title>
+    <meta name="description" content="Publications and projects by Spencer Little." />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container header-inner">
+        <a class="brand" href="#top">Spencer Little</a>
+        <div class="header-right">
+          <nav class="nav">
+            <a href="#publications">Publications</a>
+            <a href="#projects">Projects</a>
+            <a href="#team-projects">Team Projects</a>
+          </nav>
         </div>
+      </div>
+    </header>
 
-        <div class="fun">
-            <canvas id="bgCanvas"></canvas>
+    <main id="top">
+      <section class="hero">
+        <div class="container hero-inner">
+          <div class="hero-text">
+            <h1>Projects & Publications</h1>
+            <p class="lead">A living snapshot of my work — from brushless motor drivers and reinforcement learning to CubeSat power systems and robotics.</p>
+          </div>
+          <a class="avatar avatar--lg hero-avatar" href="#top" title="Profile photo">
+            <img src="assets/avatar.jpg" alt="Spencer Little headshot" />
+          </a>
         </div>
-    </div>
+      </section>
 
-    <script src="main.js"></script>
-</body>
-</html>
+      <section id="publications" class="section">
+        <div class="container">
+          <h2>Publications</h2>
+          <p class="section-note">Add papers, posters, or talks here.</p>
+          <ul class="pub-list">
+            <li class="pub-item">
+              <div class="pub-meta">
+                <span class="pub-year">2025</span>
+                <span class="pub-venue">arXiv</span>
+              </div>
+              <div class="pub-content">
+                <h3 class="pub-title">Strong, Accurate, and Low-Cost Robot Manipulator</h3>
+                <p class="pub-blurb pub-authors">Georges Chebly, Spencer Little, Nisal Perera, Aliya Abedeen, Ken Suzuki, Donghyun Kim</p>
+                <div class="pub-links">
+                  <a href="https://arxiv.org/abs/2507.15693" class="btn">Abstract</a>
+                  <a href="https://arxiv.org/pdf/2507.15693" class="btn btn-secondary">PDF</a>
+                </div>
+              </div>
+            </li>
+            <li class="pub-item placeholder">More publications coming soon…</li>
+          </ul>
+        </div>
+      </section>
+
+      <section id="projects" class="section">
+        <div class="container">
+          <h2>Main Projects</h2>
+          <div class="card-grid">
+            <article class="card">
+              <figure class="media-placeholder" aria-label="GIF or photo placeholder">GIF / Photo</figure>
+              <div class="card-body">
+                <h3>Vivo Brushless motor driver and reinforcement learning</h3>
+                <p>Brief blurb about the project. What is the goal, what’s interesting, and what’s unique about your approach? Replace this with your actual description.</p>
+              </div>
+            </article>
+
+            <article class="card">
+              <figure class="media-placeholder" aria-label="GIF or photo placeholder">GIF / Photo</figure>
+              <div class="card-body">
+                <h3>Dash Brushless Motor driver</h3>
+                <p>Short summary of the hardware, control strategy, and performance. Mention status or next steps.</p>
+              </div>
+            </article>
+
+            <article class="card">
+              <figure class="media-placeholder" aria-label="GIF or photo placeholder">GIF / Photo</figure>
+              <div class="card-body">
+                <h3>6U CubeSat BMS and Power system</h3>
+                <p>Overview of the battery management system and power architecture. Include constraints (radiation, thermal, redundancy) when you’re ready.</p>
+              </div>
+            </article>
+
+            <article class="card">
+              <figure class="media-placeholder" aria-label="GIF or photo placeholder">GIF / Photo</figure>
+              <div class="card-body">
+                <h3>Laelaps Quadruped</h3>
+                <p>Quick description of actuators, sensing, control stack, and gait performance. Add a clip or image later.</p>
+              </div>
+            </article>
+
+            <article class="card">
+              <figure class="media-placeholder" aria-label="GIF or photo placeholder">GIF / Photo</figure>
+              <div class="card-body">
+                <h3>Automated delivery in warehouse using Rover</h3>
+                <p>High‑level description of navigation, autonomy stack, safety, and integration with warehouse operations.</p>
+              </div>
+            </article>
+
+            <article class="card">
+              <figure class="media-placeholder" aria-label="GIF or photo placeholder">GIF / Photo</figure>
+              <div class="card-body">
+                <h3>1 Pound Battle Bot</h3>
+                <p>Design highlights, drive and weapon system, materials, and results. Add battle footage as a GIF later.</p>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section id="team-projects" class="section">
+        <div class="container">
+          <h2>Team Projects</h2>
+          <div class="card-grid">
+            <article class="card">
+              <figure class="media-placeholder" aria-label="GIF or photo placeholder">GIF / Photo</figure>
+              <div class="card-body">
+                <h3>Forged Motus: 80 volt BLCD FOC</h3>
+                <p>Brief description of the Field‑Oriented Control implementation, hardware platform, and performance targets.</p>
+              </div>
+            </article>
+
+            <article class="card">
+              <figure class="media-placeholder" aria-label="GIF or photo placeholder">GIF / Photo</figure>
+              <div class="card-body">
+                <h3>UMass Robotics: RoboDog</h3>
+                <p>Team role, capabilities, and key milestones. Add a GIF or demo photo when available.</p>
+              </div>
+            </article>
+
+            <article class="card">
+              <figure class="media-placeholder" aria-label="GIF or photo placeholder">GIF / Photo</figure>
+              <div class="card-body">
+                <h3>UMass Robotics: SAM humaniod torso</h3>
+                <p>Summary of the humanoid torso project, actuation approach, and control/teleop. Replace with details later.</p>
+              </div>
+            </article>
+
+            <article class="card">
+              <figure class="media-placeholder" aria-label="GIF or photo placeholder">GIF / Photo</figure>
+              <div class="card-body">
+                <h3>Umass Rocket Team: In sky depolable drone</h3>
+                <p>Overview of deployment mechanism, avionics integration, and flight testing. Add media once ready.</p>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container">
+        <p>© <span id="year"></span> Spencer Little</p>
+      </div>
+    </footer>
+
+    <script src="./main.js" defer></script>
+  </body>
+  </html>

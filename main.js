@@ -1,183 +1,77 @@
-const canvas = document.getElementById('bgCanvas');
-const ctx = canvas.getContext('2d');
-
-// Resize canvas to fit its container
-function resizeCanvas() {
-    canvas.width = canvas.parentElement.offsetWidth;
-    canvas.height = canvas.parentElement.offsetHeight;
-}
-window.addEventListener('resize', resizeCanvas);
-resizeCanvas();
-
-// Ball object with Verlet properties
-class Ball {
-    constructor(x, y, radius) {
-        this.x = x;
-        this.y = y;
-        this.oldX = x;
-        this.oldY = y;
-        this.radius = radius;
-        this.color = randomColor();
-        this.ax = 0; // Acceleration in X
-        this.ay = 0.1; // Gravity (constant downward acceleration)
-        this.growing = true; // Indicates growth during mouse hold
-    }
-
-    update() {
-        if (this.growing && this.radius < 50) {
-            this.radius += 0.5; // Growth rate
-        } else {
-            this.growing = false;
-            // Verlet Integration
-            const vx = this.x - this.oldX;
-            const vy = this.y - this.oldY;
-
-            this.oldX = this.x;
-            this.oldY = this.y;
-
-            this.x += vx + this.ax;
-            this.y += vy + this.ay;
-
-            // Reset acceleration after update
-            this.ax = 0;
-            this.ay = 0.1;
-        }
-    }
-
-    resolveBoundaries() {
-        // Horizontal boundaries
-        if (this.x - this.radius < 0) {
-            this.x = this.radius;
-            this.oldX = this.x; // Stop horizontal movement
-        } else if (this.x + this.radius > canvas.width) {
-            this.x = canvas.width - this.radius;
-            this.oldX = this.x; // Stop horizontal movement
-        }
-
-        // Elastic ground
-        if (this.y + this.radius > canvas.height) {
-            const penetration = this.y + this.radius - canvas.height; // Compression into the ground
-            const springConstant = 0.5; // Adjust spring strength
-            const dampingFactor = 0.7; // Adjust damping to reduce energy loss
-
-            const restoringForce = -springConstant * penetration; // Hooke's law
-            const vy = this.y - this.oldY; // Calculate vertical velocity
-
-            this.y = canvas.height - this.radius; // Reset ball above the ground
-            this.oldY = this.y + vy * dampingFactor + restoringForce; // Apply restoring force and damping
-        }
-
-        // Top boundary
-        if (this.y - this.radius < 0) {
-            this.y = this.radius;
-            const vy = this.y - this.oldY;
-            this.oldY = this.y + vy * -0.8; // Reverse and dampen vertical velocity
-        }
-    }
-
-    draw() {
-        // Draw the ball
-        ctx.beginPath();
-        ctx.arc(this.x, this.y, this.radius, 0, 2 * Math.PI);
-        ctx.fillStyle = this.color;
-        ctx.fill();
-    }
+// Set current year in footer
+const yearEl = document.getElementById('year');
+if (yearEl) {
+  yearEl.textContent = new Date().getFullYear();
 }
 
-// Generate random color
-function randomColor() {
-    const r = Math.floor(Math.random() * 256);
-    const g = Math.floor(Math.random() * 256);
-    const b = Math.floor(Math.random() * 256);
-    return `rgb(${r}, ${g}, ${b})`;
-}
+// Image rotator for simple slideshows (e.g., Rover)
+// Usage: <div class="media-rotator" data-interval="3000"> <img ...> <img ...> </div>
+(function initMediaRotators() {
+  const rotators = Array.from(document.querySelectorAll('.media-rotator'));
+  if (!rotators.length) return;
 
-// Check and resolve collisions between two balls
-function resolveCollision(ball1, ball2) {
-    const dx = ball2.x - ball1.x;
-    const dy = ball2.y - ball1.y;
-    const dist = Math.sqrt(dx * dx + dy * dy);
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-    if (dist < ball1.radius + ball2.radius) {
-        // Overlap resolution
-        const overlap = ball1.radius + ball2.radius - dist;
-        const correctionFactor = 0.5; // Split the correction equally between the two balls
-        const nx = dx / dist; // Normalized direction vector
-        const ny = dy / dist;
+  rotators.forEach((el) => {
+    const slides = Array.from(el.querySelectorAll('img, video'));
+    if (slides.length === 0) return;
 
-        // Adjust positions to resolve overlap
-        ball1.x -= nx * overlap * correctionFactor;
-        ball1.y -= ny * overlap * correctionFactor;
-        ball2.x += nx * overlap * correctionFactor;
-        ball2.y += ny * overlap * correctionFactor;
+    // Ensure videos are muted/inline for autoplay
+    slides.forEach((s) => {
+      if (s.tagName === 'VIDEO') {
+        s.muted = true; s.playsInline = true; s.setAttribute('playsinline', '');
+      }
+    });
 
-        // Calculate masses proportional to radii
-        const mass1 = ball1.radius;
-        const mass2 = ball2.radius;
-
-        // Relative velocity
-        const vx = ball2.x - ball2.oldX - (ball1.x - ball1.oldX);
-        const vy = ball2.y - ball2.oldY - (ball1.y - ball1.oldY);
-
-        // Relative velocity along the normal
-        const dotProduct = vx * nx + vy * ny;
-
-        // Do not resolve if velocities are separating
-        if (dotProduct > 0) return;
-
-        // Impulse scalar
-        const impulse = (2 * dotProduct) / (mass1 + mass2);
-
-        // Apply impulse to each ball
-        ball1.oldX -= (impulse * mass2 * nx);
-        ball1.oldY -= (impulse * mass2 * ny);
-        ball2.oldX += (impulse * mass1 * nx);
-        ball2.oldY += (impulse * mass1 * ny);
-    }
-}
-
-
-// Ball list and current growing ball
-const balls = [];
-let growingBall = null;
-
-// Start growing a new ball on mouse down
-canvas.addEventListener('mousedown', (event) => {
-    const rect = canvas.getBoundingClientRect();
-    const mouseX = event.clientX - rect.left;
-    const mouseY = event.clientY - rect.top;
-
-    if (!growingBall) {
-        growingBall = new Ball(mouseX, mouseY, 10); // Initial small radius
-        balls.push(growingBall);
-    }
-});
-
-// Stop growing the ball on mouse up
-canvas.addEventListener('mouseup', () => {
-    if (growingBall) {
-        growingBall.growing = false; // Stop growth
-        growingBall = null;
-    }
-});
-
-// Animation loop
-function animate() {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-    for (let i = 0; i < balls.length; i++) {
-        balls[i].update();
-        balls[i].resolveBoundaries();
-
-        // Check collisions with other balls
-        for (let j = i + 1; j < balls.length; j++) {
-            resolveCollision(balls[i], balls[j]);
-        }
-
-        balls[i].draw();
+    // Show first slide
+    let idx = 0;
+    slides.forEach((s, i) => s.classList.toggle('is-active', i === idx));
+    if (slides[idx].tagName === 'VIDEO') {
+      slides[idx].currentTime = 0;
+      slides[idx].play().catch(() => {});
     }
 
-    requestAnimationFrame(animate);
-}
+    if (prefersReducedMotion || slides.length < 2) return; // no auto-rotate
 
-animate();
+    const interval = Math.max(1200, parseInt(el.getAttribute('data-interval') || '3000', 10));
+    let timer = setInterval(next, interval);
+
+    function next() {
+      const current = slides[idx];
+      if (current.tagName === 'VIDEO') {
+        current.pause();
+        try { current.currentTime = 0; } catch (_) {}
+      }
+      current.classList.remove('is-active');
+
+      idx = (idx + 1) % slides.length;
+      const nextEl = slides[idx];
+      nextEl.classList.add('is-active');
+      if (nextEl.tagName === 'VIDEO') {
+        nextEl.currentTime = 0;
+        nextEl.play().catch(() => {});
+      }
+    }
+
+    function pause() {
+      clearInterval(timer);
+      const current = slides[idx];
+      if (current && current.tagName === 'VIDEO') current.pause();
+    }
+    function resume() {
+      clearInterval(timer);
+      const current = slides[idx];
+      if (current && current.tagName === 'VIDEO') current.play().catch(() => {});
+      timer = setInterval(next, interval);
+    }
+
+    el.addEventListener('mouseenter', pause);
+    el.addEventListener('mouseleave', resume);
+    el.addEventListener('focusin', pause);
+    el.addEventListener('focusout', resume);
+
+    document.addEventListener('visibilitychange', () => {
+      if (document.hidden) pause(); else resume();
+    });
+  });
+})();
