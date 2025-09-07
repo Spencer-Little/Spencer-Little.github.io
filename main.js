@@ -23,48 +23,82 @@ if (yearEl) {
       }
     });
 
-    // Show first slide
     let idx = 0;
-    slides.forEach((s, i) => s.classList.toggle('is-active', i === idx));
-    if (slides[idx].tagName === 'VIDEO') {
-      slides[idx].currentTime = 0;
-      slides[idx].play().catch(() => {});
-    }
+    let timer = null;
+    let onEnded = null;
+    const baseInterval = Math.max(1200, parseInt(el.getAttribute('data-interval') || '3000', 10));
 
-    if (prefersReducedMotion || slides.length < 2) return; // no auto-rotate
-
-    const interval = Math.max(1200, parseInt(el.getAttribute('data-interval') || '3000', 10));
-    let timer = setInterval(next, interval);
-
-    function next() {
-      const current = slides[idx];
-      if (current.tagName === 'VIDEO') {
-        current.pause();
-        try { current.currentTime = 0; } catch (_) {}
-      }
-      current.classList.remove('is-active');
-
-      idx = (idx + 1) % slides.length;
-      const nextEl = slides[idx];
+    function show(i) {
+      // Hide current
+      slides.forEach((s, k) => {
+        if (k !== i && s.classList.contains('is-active')) {
+          if (s.tagName === 'VIDEO') {
+            try { s.pause(); s.currentTime = 0; } catch (_) {}
+          }
+          s.classList.remove('is-active');
+        }
+      });
+      // Show new
+      const nextEl = slides[i];
       nextEl.classList.add('is-active');
       if (nextEl.tagName === 'VIDEO') {
-        nextEl.currentTime = 0;
+        try { nextEl.currentTime = 0; } catch (_) {}
         nextEl.play().catch(() => {});
       }
     }
 
+    function clearTimers() {
+      if (timer) { clearInterval(timer); timer = null; }
+      const current = slides[idx];
+      if (onEnded && current && current.tagName === 'VIDEO') {
+        current.removeEventListener('ended', onEnded);
+        onEnded = null;
+      }
+    }
+
+    function schedule() {
+      clearTimers();
+      const current = slides[idx];
+
+      // If current is a non-looping video, wait for it to finish
+      if (current && current.tagName === 'VIDEO' && !current.loop) {
+        onEnded = () => { next(); };
+        current.addEventListener('ended', onEnded, { once: true });
+        return;
+      }
+
+      // Otherwise use time-based rotation
+      timer = setInterval(next, baseInterval);
+    }
+
+    function next() {
+      const current = slides[idx];
+      if (current && current.tagName === 'VIDEO') {
+        try { current.pause(); current.currentTime = 0; } catch (_) {}
+      }
+      current && current.classList.remove('is-active');
+
+      idx = (idx + 1) % slides.length;
+      show(idx);
+      if (!(prefersReducedMotion || slides.length < 2)) schedule();
+    }
+
     function pause() {
-      clearInterval(timer);
+      clearTimers();
       const current = slides[idx];
       if (current && current.tagName === 'VIDEO') current.pause();
     }
     function resume() {
-      clearInterval(timer);
       const current = slides[idx];
       if (current && current.tagName === 'VIDEO') current.play().catch(() => {});
-      timer = setInterval(next, interval);
+      if (!(prefersReducedMotion || slides.length < 2)) schedule();
     }
 
+    // Initialize
+    show(idx);
+    if (!(prefersReducedMotion || slides.length < 2)) schedule();
+
+    // Interaction hooks
     el.addEventListener('mouseenter', pause);
     el.addEventListener('mouseleave', resume);
     el.addEventListener('focusin', pause);
