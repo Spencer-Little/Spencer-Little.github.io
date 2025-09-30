@@ -16,8 +16,9 @@
           <nav class="nav">
             <a href="#publications">Publications</a>
             <a href="#forged-motus">Forged Motus LLC</a>
-            <a href="#projects">Projects</a>
+            <a href="#projects">Main Projects</a>
             <a href="#team-projects">Team Projects</a>
+            <a href="#personal-project-archive">Personal Projects Archive</a>
           </nav>
         </div>
       </div>
@@ -85,32 +86,51 @@
                 <img src="assets/vivo.jpg" alt="Vivo brushless motor driver hardware" class="media" />
               </div>
               <div class="card-body">
-                <h3>Vivo Brushless Motor Driver and Reinforcement Learning</h3>
-                <p>Built a brushless motor driver that is a drop‑in replacement for the Go2 drivers on Unitree robot dogs for use in a robot dog. Also took on the challenge of using Isaac Sim and Isaac Lab for reinforcement learning.</p>
+                <h3>Guide Dog, Brushless Motor Driver and Reinforcement Learning</h3>
+                <p>Built a 24 volt brushless motor driver that is a drop‑in replacement for the Go2 drivers on Unitree robot dogs for use in a robot dog. Also took on the challenge of using Isaac Sim and Isaac Lab for reinforcement learning.</p>
               </div>
             </article>
 
             <article class="card">
-              <img src="assets/Dash.jpg" alt="Dash brushless motor driver" class="media" />
+              <div class="media-rotator" data-interval="3400" aria-label="Dash driver media rotator">
+                <img src="assets/Dash.jpg" alt="Dash brushless motor driver front" class="media" />
+                <img src="assets/dash2.jpg" alt="Dash brushless motor driver rear" class="media" />
+              </div>
               <div class="card-body">
-                <h3>Dash Brushless Motor Driver</h3>
-                <p>Building a high‑power 48‑volt, 70‑amp brushless driver for a new humanoid robot.</p>
+                <h3>Dash Brushless Motor Driver and Electrical Stack</h3>
+                <p>Building a high‑power 48‑volt, 70‑amp brushless driver for a new humanoid robot and designing various electrical parts. Currently working a Ethernet to CAN-FD build using altium. </p>
               </div>
             </article>
 
+            <article class="card">
+              <div class="media-rotator" data-interval="4200" aria-label="Prestoe humanoid upgrade media rotator">
+                <video src="assets/prestoe.mp4" preload="metadata" class="media" aria-label="Prestoe humanoid upgrade demo video"></video>
+                <img src="assets/prestoe.jpg" alt="Prestoe humanoid robot upgrade still" class="media" />
+              </div>
+              <div class="card-body">
+                <h3>Prestoe: Upgrading a Humanoid Robot</h3>
+                <p>Upgrading Prestoe to 80 volts using new battery and motor driver, while making him faster using CAN-FD.</p>
+              </div>
+            </article>
             <article class="card">
               <img src="assets/6u.jpg" alt="6U CubeSat BMS and Power System" class="media" />
               <div class="card-body">
-                <h3>6U CubeSat BMS and Power System</h3>
+                <h3>UMass CubeSat Lab: 6U CubeSat BMS and Power System</h3>
                 <p>Designed a custom 6U power system—from battery chemistry to PCB design and solar panel manufacturing.</p>
               </div>
             </article>
-
+        
             <article class="card">
-              <img src="assets/Laelaps.jpg" alt="Laelaps quadruped robot" class="media" />
+              <div class="media-placeholder">
+                <div class="placeholder-inner">
+                  <span class="placeholder-tag">In early development</span>
+                  <p class="placeholder-title">Prototype preview coming soon</p>
+                  <p class="placeholder-copy">Hardware photos to come!</p>
+                </div>
+              </div>
               <div class="card-body">
-                <h3>Laelaps Quadruped</h3>
-                <p>Designed, CADed, and built a quadruped from scratch as a platform for teaching advanced robotics software.</p>
+                <h3>UMass CubeSat Lab: Space-Ready PCIe to USB 3.1 </h3>
+                <p>Implementing a USB 3.1 interface using the existing M.2 slot on nanosatellite flight computers to enable compatibility with hyperspectral cameras.</p>
               </div>
             </article>
 
@@ -126,13 +146,6 @@
               </div>
             </article>
 
-            <article class="card">
-              <img src="assets/BattleBot.jpg" alt="1‑lb battle bot" class="media" />
-              <div class="card-body">
-                <h3>1‑lb Battle Bot</h3>
-                <p>Designed and built a one‑pound plastic battle bot to compete and learn with the UMass Robotics Club.</p>
-              </div>
-            </article>
           </div>
         </div>
       </section>
@@ -181,6 +194,30 @@
           </div>
         </div>
       </section>
+
+      <section id="personal-project-archive" class="section">
+        <div class="container">
+          <h2>Personal Projects Archive</h2>
+          <div class="card-grid">
+            <article class="card">
+              <img src="assets/Laelaps.jpg" alt="Laelaps quadruped robot" class="media" />
+              <div class="card-body">
+                <h3>Laelaps Quadruped</h3>
+                <p>Designed, CADed, and built a quadruped from scratch as a platform for teaching advanced robotics software.</p>
+              </div>
+            </article>
+
+            <article class="card">
+              <img src="assets/BattleBot.jpg" alt="1‑lb battle bot" class="media" />
+              <div class="card-body">
+                <h3>1‑lb Battle Bot</h3>
+                <p>Designed and built a one‑pound plastic battle bot to compete and learn with the UMass Robotics Club.</p>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
     </main>
 
     <footer class="site-footer">
@@ -192,3 +229,4 @@
     <script src="./main.js" defer></script>
   </body>
   </html>
+
