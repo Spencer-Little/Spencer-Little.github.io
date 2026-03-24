@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Prestoe — Upgrading a Humanoid Robot — Spencer Little</title>
+    <meta name="description" content="Upgraded the Prestoe humanoid robot to run at 80 volts with new motor drivers and CAN-FD communication, enabling faster and more dynamic motion." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="stylesheet" href="../styles.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container header-inner">
+        <a class="brand" href="../index.html">Spencer Little</a>
+        <nav class="nav">
+          <a href="../index.html#publications">Publications</a>
+          <a href="../index.html#forged-motus">Forged Motus</a>
+          <a href="../index.html#projects">Projects</a>
+          <a href="../index.html#team-projects">Team</a>
+          <a href="../index.html#personal-project-archive">Archive</a>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <div class="project-hero">
+        <video src="../assets/prestoe.mp4" autoplay muted playsinline loop class="project-hero-media"></video>
+      </div>
+
+      <div class="container project-content">
+        <a href="../index.html" class="back-link">← All Projects</a>
+        <div class="project-header">
+          <h1>Prestoe — Upgrading a Humanoid Robot</h1>
+          <span class="proj-tag">Humanoid · Motor Control</span>
+        </div>
+        <div class="project-body">
+          <p>Prestoe is a humanoid robot platform that I upgraded to run at 80 volts, significantly increasing the power available to its actuators and enabling faster, more dynamic motion.</p>
+          <p>The upgrade involved replacing the original battery system with a new high-voltage pack, integrating new motor drivers, and switching the communication bus to CAN-FD for higher bandwidth and lower latency.</p>
+          <p>The result is a noticeably faster and more capable robot, with a communication architecture that can support future expansion as more joints and sensors are added to the platform.</p>
+        </div>
+        <div class="project-gallery"><img src="../assets/prestoe.jpg" alt="Prestoe humanoid robot upgrade" /></div>
+      </div>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container">
+        <p>© <span id="year"></span> Spencer Little</p>
+      </div>
+    </footer>
+    <script src="../main.js" defer></script>
+  </body>
+</html>

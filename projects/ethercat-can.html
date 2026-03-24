@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>EtherCAT to CAN Bus Interface — Spencer Little</title>
+    <meta name="description" content="Custom EtherCAT slave node using the LAN9252 chip bridging to CAN Bus, with a PC-based SOEM master for testing and validation." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="stylesheet" href="../styles.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container header-inner">
+        <a class="brand" href="../index.html">Spencer Little</a>
+        <nav class="nav">
+          <a href="../index.html#publications">Publications</a>
+          <a href="../index.html#forged-motus">Forged Motus</a>
+          <a href="../index.html#projects">Projects</a>
+          <a href="../index.html#team-projects">Team</a>
+          <a href="../index.html#personal-project-archive">Archive</a>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <div class="project-hero">
+        <img src="../assets/EthernetTestBench.jpg" alt="EtherCAT LAN9252 test bench" class="project-hero-media" />
+      </div>
+
+      <div class="container project-content">
+        <a href="../index.html" class="back-link">← All Projects</a>
+        <div class="project-header">
+          <h1>EtherCAT to CAN Bus Interface</h1>
+          <span class="proj-tag">Comms · Hardware</span>
+        </div>
+        <div class="project-body">
+          <p>An ongoing learning project focused on EtherCAT — the high-speed industrial Ethernet fieldbus protocol used in precision motion control and robotics applications.</p>
+          <p>The hardware side centers on the LAN9252 EtherCAT slave controller chip, which I am using to design a custom EtherCAT slave node that bridges to CAN Bus — allowing EtherCAT masters to communicate with CAN-based actuators and sensors.</p>
+          <p>On the software side, I am using SOEM (Simple Open EtherCAT Master), an open-source EtherCAT master library, to develop and test a PC-based Ethernet master for validating the hardware design. This project is bridging my existing CAN-FD experience with the EtherCAT ecosystem.</p>
+        </div>
+      </div>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container">
+        <p>© <span id="year"></span> Spencer Little</p>
+      </div>
+    </footer>
+    <script src="../main.js" defer></script>
+  </body>
+</html>

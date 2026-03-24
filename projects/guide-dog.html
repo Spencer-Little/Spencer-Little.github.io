@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Guide Dog — Brushless Motor Driver &amp; Reinforcement Learning — Spencer Little</title>
+    <meta name="description" content="24V brushless motor driver drop-in replacement for Unitree Go2 with custom FOC firmware, plus reinforcement learning policies trained in NVIDIA Isaac Sim." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="stylesheet" href="../styles.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container header-inner">
+        <a class="brand" href="../index.html">Spencer Little</a>
+        <nav class="nav">
+          <a href="../index.html#publications">Publications</a>
+          <a href="../index.html#forged-motus">Forged Motus</a>
+          <a href="../index.html#projects">Projects</a>
+          <a href="../index.html#team-projects">Team</a>
+          <a href="../index.html#personal-project-archive">Archive</a>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <div class="project-hero">
+        <video src="../assets/Vivo.mp4" autoplay muted playsinline loop class="project-hero-media"></video>
+      </div>
+
+      <div class="container project-content">
+        <a href="../index.html" class="back-link">← All Projects</a>
+        <div class="project-header">
+          <h1>Guide Dog — Brushless Motor Driver &amp; Reinforcement Learning</h1>
+          <span class="proj-tag">Motor Control · RL</span>
+        </div>
+        <div class="project-body">
+          <p>Designed and built a 24-volt brushless motor driver that serves as a drop-in replacement for the stock Go2 motor drivers on Unitree robot dogs, enabling custom control strategies and lower-level hardware access.</p>
+          <p>The driver matches the physical and electrical interface of the original units while adding custom firmware support, giving full control over the field-oriented control loop and communication parameters.</p>
+          <p>Alongside the hardware work, I took on the challenge of using NVIDIA Isaac Sim and Isaac Lab to train reinforcement learning policies for the robot dog — bridging the gap between custom hardware and modern sim-to-real RL workflows.</p>
+        </div>
+        <div class="project-gallery"><img src="../assets/vivo.jpg" alt="Vivo brushless motor driver hardware" /></div>
+      </div>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container">
+        <p>© <span id="year"></span> Spencer Little</p>
+      </div>
+    </footer>
+    <script src="../main.js" defer></script>
+  </body>
+</html>

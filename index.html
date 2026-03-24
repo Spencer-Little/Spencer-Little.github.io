@@ -6,30 +6,33 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <title>Spencer Little — Projects & Publications</title>
     <meta name="description" content="Publications and projects by Spencer Little." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link rel="stylesheet" href="./styles.css" />
   </head>
   <body>
+
     <header class="site-header">
       <div class="container header-inner">
         <a class="brand" href="#top">Spencer Little</a>
-        <div class="header-right">
-          <nav class="nav">
-            <a href="#publications">Publications</a>
-            <a href="#forged-motus">Forged Motus LLC</a>
-            <a href="#projects">Main Projects</a>
-            <a href="#team-projects">Team Projects</a>
-            <a href="#personal-project-archive">Personal Projects Archive</a>
-          </nav>
-        </div>
+        <nav class="nav">
+          <a href="#publications">Publications</a>
+          <a href="#forged-motus">Forged Motus</a>
+          <a href="#projects">Projects</a>
+          <a href="#team-projects">Team</a>
+          <a href="#personal-project-archive">Archive</a>
+        </nav>
       </div>
     </header>
 
     <main id="top">
+
       <section class="hero">
         <div class="container hero-inner">
           <div class="hero-text">
-            <h1>Projects & Publications</h1>
-            <p class="lead">A living snapshot of my work — from brushless motor drivers and reinforcement learning to CubeSat power systems and robotics.</p>
+            <h1>Spencer Little</h1>
+            <p class="hero-tagline">Hardware Engineer · Robotics · Motor Control</p>
+            <p class="lead">Building brushless motor drivers, power systems, and robotics platforms — from PCB to firmware to real hardware running in the field.</p>
           </div>
           <a class="avatar avatar--lg hero-avatar" href="#top" title="Profile photo">
             <img src="assets/avatar.jpg" alt="Spencer Little headshot" />
@@ -40,7 +43,6 @@
       <section id="publications" class="section">
         <div class="container">
           <h2>Publications</h2>
-          <p class="section-note"></p>
           <ul class="pub-list">
             <li class="pub-item">
               <div class="pub-meta">
@@ -49,7 +51,7 @@
               </div>
               <div class="pub-content">
                 <h3 class="pub-title">Strong, Accurate, and Low-Cost Robot Manipulator</h3>
-                <p class="pub-blurb pub-authors">Georges Chebly, Spencer Little, Nisal Perera, Aliya Abedeen, Ken Suzuki, Donghyun Kim</p>
+                <p class="pub-authors">Georges Chebly, Spencer Little, Nisal Perera, Aliya Abedeen, Ken Suzuki, Donghyun Kim</p>
                 <div class="pub-links">
                   <a href="https://arxiv.org/abs/2507.15693" class="btn">Abstract</a>
                   <a href="https://arxiv.org/pdf/2507.15693" class="btn btn-secondary">PDF</a>
@@ -64,157 +66,190 @@
       <section id="forged-motus" class="section">
         <div class="container">
           <h2>Forged Motus, LLC</h2>
-          <div class="card-grid">
-            <article class="card">
-              <video src="assets/80v.mp4" preload="metadata" class="media" playsinline muted autoplay loop aria-label="Forged Motus 80V BLDC FOC demo"></video>
-              <div class="card-body">
-                <h3>80V BLDC FOC Platform</h3>
-                <p>As CEO and Hardware Lead, led a small team to build a field‑oriented control brushless motor driver. It includes an 18‑bit encoder, CAN‑FD, and runs at 80 volts and 45 amps.</p>
-              </div>
-            </article>
-          </div>
+          <ul class="proj-list">
+            <li class="proj-item" data-preview="assets/80v.mp4">
+              <a class="proj-row" href="projects/80v-bldc.html">
+                <span class="proj-num">01</span>
+                <div class="proj-info">
+                  <span class="proj-name">80V BLDC FOC Platform</span>
+                  <span class="proj-desc">As CEO and Hardware Lead, built a field-oriented control brushless motor driver with an 18-bit encoder, CAN-FD, running at 80V and 45A.</span>
+                </div>
+                <span class="proj-tag">FOC · Motor Control</span>
+                <span class="proj-arrow">→</span>
+              </a>
+            </li>
+          </ul>
         </div>
       </section>
 
       <section id="projects" class="section">
         <div class="container">
           <h2>Main Projects</h2>
-          <div class="card-grid">
-            <article class="card">
-              <div class="media-rotator" data-interval="3500" aria-label="Vivo media rotator">
-                <video src="assets/Vivo.mp4" preload="metadata" class="media" aria-label="Vivo brushless driver demo video"></video>
-                <img src="assets/vivo.jpg" alt="Vivo brushless motor driver hardware" class="media" />
-              </div>
-              <div class="card-body">
-                <h3>Guide Dog, Brushless Motor Driver and Reinforcement Learning</h3>
-                <p>Built a 24 volt brushless motor driver that is a drop‑in replacement for the Go2 drivers on Unitree robot dogs for use in a robot dog. Also took on the challenge of using Isaac Sim and Isaac Lab for reinforcement learning.</p>
-              </div>
-            </article>
+          <ul class="proj-list">
 
-            <article class="card">
-              <div class="media-rotator" data-interval="3400" aria-label="Dash driver media rotator">
-                <img src="assets/Dash.jpg" alt="Dash brushless motor driver front" class="media" />
-                <img src="assets/dash2.jpg" alt="Dash brushless motor driver rear" class="media" />
-              </div>
-              <div class="card-body">
-                <h3>Dash Brushless Motor Driver and Electrical Stack</h3>
-                <p>Building a high‑power 48‑volt, 70‑amp brushless driver for a new humanoid robot and designing various electrical parts. Currently working a Ethernet to CAN-FD build using altium. </p>
-              </div>
-            </article>
-
-            <article class="card">
-              <div class="media-rotator" data-interval="4200" aria-label="Prestoe humanoid upgrade media rotator">
-                <video src="assets/prestoe.mp4" preload="metadata" class="media" aria-label="Prestoe humanoid upgrade demo video"></video>
-                <img src="assets/prestoe.jpg" alt="Prestoe humanoid robot upgrade still" class="media" />
-              </div>
-              <div class="card-body">
-                <h3>Prestoe: Upgrading a Humanoid Robot</h3>
-                <p>Upgrading Prestoe to 80 volts using new battery and motor driver, while making him faster using CAN-FD.</p>
-              </div>
-            </article>
-            <article class="card">
-              <img src="assets/6u.jpg" alt="6U CubeSat BMS and Power System" class="media" />
-              <div class="card-body">
-                <h3>UMass CubeSat Lab: 6U CubeSat BMS and Power System</h3>
-                <p>Designed a custom 6U power system—from battery chemistry to PCB design and solar panel manufacturing.</p>
-              </div>
-            </article>
-        
-            <article class="card">
-              <div class="media-placeholder">
-                <div class="placeholder-inner">
-                  <span class="placeholder-tag">In early development</span>
-                  <p class="placeholder-title">Prototype preview coming soon</p>
-                  <p class="placeholder-copy">Hardware photos to come!</p>
+            <li class="proj-item" data-preview="assets/vivo.jpg">
+              <a class="proj-row" href="projects/guide-dog.html">
+                <span class="proj-num">01</span>
+                <div class="proj-info">
+                  <span class="proj-name">Guide Dog — Brushless Motor Driver &amp; Reinforcement Learning</span>
+                  <span class="proj-desc">24V drop-in replacement for Unitree Go2 motor drivers. Isaac Sim and Isaac Lab for reinforcement learning on the robot dog.</span>
                 </div>
-              </div>
-              <div class="card-body">
-                <h3>UMass CubeSat Lab: Space-Ready PCIe to USB 3.1 </h3>
-                <p>Implementing a USB 3.1 interface using the existing M.2 slot on nanosatellite flight computers to enable compatibility with hyperspectral cameras.</p>
-              </div>
-            </article>
+                <span class="proj-tag">Motor Control · RL</span>
+                <span class="proj-arrow">→</span>
+              </a>
+            </li>
 
-            <article class="card">
-              <div class="media-rotator" data-interval="3000" aria-label="Rover media rotator">
-                <img src="assets/rover-1.jpg" alt="Warehouse rover navigating aisle" class="media" />
-                <img src="assets/rover-2.jpg" alt="Warehouse rover close-up" class="media" />
-                <img src="assets/rover-3.jpg" alt="Warehouse rover docking" class="media" />
-              </div>
-              <div class="card-body">
-                <h3>Automated Warehouse Delivery Rover</h3>
-                <p>Used Nav2, SLAM Toolbox, Intel RealSense cameras, and ROS 2 to build a safe, reliable system for transporting chemicals from the shipping room to laboratories.</p>
-              </div>
-            </article>
+            <li class="proj-item" data-preview="assets/Dash.jpg">
+              <a class="proj-row" href="projects/dash.html">
+                <span class="proj-num">02</span>
+                <div class="proj-info">
+                  <span class="proj-name">Dash — Brushless Motor Driver &amp; Electrical Stack</span>
+                  <span class="proj-desc">48V / 70A brushless driver for a humanoid robot. Currently designing the Ethernet-to-CAN-FD board in Altium.</span>
+                </div>
+                <span class="proj-tag">Motor Control</span>
+                <span class="proj-arrow">→</span>
+              </a>
+            </li>
 
-          </div>
+            <li class="proj-item" data-preview="assets/prestoe.jpg">
+              <a class="proj-row" href="projects/prestoe.html">
+                <span class="proj-num">03</span>
+                <div class="proj-info">
+                  <span class="proj-name">Prestoe — Upgrading a Humanoid Robot</span>
+                  <span class="proj-desc">Upgraded Prestoe to 80V with a new battery pack and motor driver. Added CAN-FD for faster communication throughput.</span>
+                </div>
+                <span class="proj-tag">Humanoid · Motor</span>
+                <span class="proj-arrow">→</span>
+              </a>
+            </li>
+
+            <li class="proj-item" data-preview="assets/6u.jpg">
+              <a class="proj-row" href="projects/6u-cubesat.html">
+                <span class="proj-num">04</span>
+                <div class="proj-info">
+                  <span class="proj-name">UMass CubeSat Lab — 6U BMS &amp; Power System</span>
+                  <span class="proj-desc">Designed a complete 6U power system from battery chemistry selection to PCB layout and solar panel manufacturing.</span>
+                </div>
+                <span class="proj-tag">Space · Power</span>
+                <span class="proj-arrow">→</span>
+              </a>
+            </li>
+
+            <li class="proj-item" data-preview="assets/EthernetTestBench.jpg">
+              <a class="proj-row" href="projects/ethercat-can.html">
+                <span class="proj-num">05</span>
+                <div class="proj-info">
+                  <span class="proj-name">EtherCAT to CAN Bus Interface</span>
+                  <span class="proj-desc">Learning EtherCAT hardware with the LAN9252 slave controller. Building an EtherCAT-to-CAN Bus bridge, using SOEM to test an Ethernet master.</span>
+                </div>
+                <span class="proj-tag">Comms · Hardware</span>
+                <span class="proj-arrow">→</span>
+              </a>
+            </li>
+
+            <li class="proj-item" data-preview="assets/rover-1.jpg">
+              <a class="proj-row" href="projects/warehouse-rover.html">
+                <span class="proj-num">06</span>
+                <div class="proj-info">
+                  <span class="proj-name">Automated Warehouse Delivery Rover</span>
+                  <span class="proj-desc">ROS 2, Nav2, SLAM Toolbox, and Intel RealSense cameras for autonomous chemical delivery between a shipping room and labs.</span>
+                </div>
+                <span class="proj-tag">ROS 2 · Robotics</span>
+                <span class="proj-arrow">→</span>
+              </a>
+            </li>
+
+          </ul>
         </div>
       </section>
 
       <section id="team-projects" class="section">
         <div class="container">
           <h2>Team Projects</h2>
-          <div class="card-grid">
-            <article class="card">
-              <img src="assets/RoboDog.jpg" alt="UMass Robotics RoboDog" class="media" />
-              <div class="card-body">
-                <h3>UMass Robotics: RoboDog</h3>
-                <p>Serving as Electrical Lead and Project Manager to build a custom quadruped for future research.</p>
-              </div>
-            </article>
+          <ul class="proj-list">
 
-            <article class="card">
-              <div class="media-rotator" data-interval="3200" aria-label="SAM humanoid media rotator">
-                <img src="assets/SAM-1.jpg" alt="SAM humanoid torso, front" class="media" />
-                <img src="assets/SAM-2.jpg" alt="SAM humanoid torso, side" class="media" />
-              </div>
-              <div class="card-body">
-                <h3>UMass Robotics: SAM Humanoid Torso</h3>
-                <p>Served as Electrical Lead and Project Manager; developed a custom SPI‑to‑CAN board and designed the humanoid electrical stack for VR control.</p>
-              </div>
-            </article>
+            <li class="proj-item" data-preview="assets/RoboDog.jpg">
+              <a class="proj-row" href="projects/robodog.html">
+                <span class="proj-num">01</span>
+                <div class="proj-info">
+                  <span class="proj-name">UMass Robotics — RoboDog</span>
+                  <span class="proj-desc">Electrical Lead and Project Manager on a custom quadruped platform built for future robotics research at UMass.</span>
+                </div>
+                <span class="proj-tag">Robotics · Electrical</span>
+                <span class="proj-arrow">→</span>
+              </a>
+            </li>
 
-            <article class="card">
-              <div class="media-rotator" data-interval="3000" aria-label="Rocket drone media rotator">
-                <img src="assets/Drone-1.jpg" alt="Rocket team deployable drone prototype" class="media" />
-                <img src="assets/Drone-2.jpg" alt="Deployable drone during testing" class="media" />
-              </div>
-              <div class="card-body">
-                <h3>UMass Rocket Team: In‑Flight Deployable Drone</h3>
-                <p>Built and deployed a drone located near the nose cone of a 14‑foot rocket; it deployed during descent using onboard sensors and GPS to perform an autonomous landing.</p>
-              </div>
-            </article>
+            <li class="proj-item" data-preview="assets/SAM-1.jpg">
+              <a class="proj-row" href="projects/sam-humanoid.html">
+                <span class="proj-num">02</span>
+                <div class="proj-info">
+                  <span class="proj-name">UMass Robotics — SAM Humanoid Torso</span>
+                  <span class="proj-desc">Electrical Lead and PM. Designed a custom SPI-to-CAN board and the full humanoid electrical stack for VR teleoperation.</span>
+                </div>
+                <span class="proj-tag">Humanoid · Electrical</span>
+                <span class="proj-arrow">→</span>
+              </a>
+            </li>
 
-            <article class="card">
-              <img src="assets/orientation.jpg" alt="6U CubeSat orientation demo on 3‑DOF gimbal" class="media" />
-              <div class="card-body">
-                <h3>6U Orientation Demo with 3‑DOF Gimbal</h3>
-                <p>Team project to prove and test orientation control for a 6U CubeSat using a 3‑DOF gimbal. Demonstrated closed‑loop attitude control concepts and validated sensor‑fusion and actuation on a benchtop rig.</p>
-              </div>
-            </article>
-          </div>
+            <li class="proj-item" data-preview="assets/Drone-1.jpg">
+              <a class="proj-row" href="projects/rocket-drone.html">
+                <span class="proj-num">03</span>
+                <div class="proj-info">
+                  <span class="proj-name">UMass Rocket Team — In‑Flight Deployable Drone</span>
+                  <span class="proj-desc">Drone deployed from the nose cone of a 14-foot rocket during descent. Used onboard sensors and GPS for autonomous landing.</span>
+                </div>
+                <span class="proj-tag">Aerospace</span>
+                <span class="proj-arrow">→</span>
+              </a>
+            </li>
+
+            <li class="proj-item" data-preview="assets/orientation.jpg">
+              <a class="proj-row" href="projects/orientation-demo.html">
+                <span class="proj-num">04</span>
+                <div class="proj-info">
+                  <span class="proj-name">6U Orientation Demo — 3‑DOF Gimbal</span>
+                  <span class="proj-desc">Proved closed-loop attitude control for a 6U CubeSat using a 3-DOF benchtop gimbal. Validated sensor fusion and actuation concepts.</span>
+                </div>
+                <span class="proj-tag">Space · Control</span>
+                <span class="proj-arrow">→</span>
+              </a>
+            </li>
+
+          </ul>
         </div>
       </section>
 
       <section id="personal-project-archive" class="section">
         <div class="container">
           <h2>Personal Projects Archive</h2>
-          <div class="card-grid">
-            <article class="card">
-              <img src="assets/Laelaps.jpg" alt="Laelaps quadruped robot" class="media" />
-              <div class="card-body">
-                <h3>Laelaps Quadruped</h3>
-                <p>Designed, CADed, and built a quadruped from scratch as a platform for teaching advanced robotics software.</p>
-              </div>
-            </article>
+          <ul class="proj-list">
 
-            <article class="card">
-              <img src="assets/BattleBot.jpg" alt="1‑lb battle bot" class="media" />
-              <div class="card-body">
-                <h3>1‑lb Battle Bot</h3>
-                <p>Designed and built a one‑pound plastic battle bot to compete and learn with the UMass Robotics Club.</p>
-              </div>
-            </article>
-          </div>
+            <li class="proj-item" data-preview="assets/Laelaps.jpg">
+              <a class="proj-row" href="projects/laelaps.html">
+                <span class="proj-num">01</span>
+                <div class="proj-info">
+                  <span class="proj-name">Laelaps Quadruped</span>
+                  <span class="proj-desc">Designed, CADed, and built a quadruped from scratch as a teaching platform for advanced robotics software.</span>
+                </div>
+                <span class="proj-tag">Robotics</span>
+                <span class="proj-arrow">→</span>
+              </a>
+            </li>
+
+            <li class="proj-item" data-preview="assets/BattleBot.jpg">
+              <a class="proj-row" href="projects/battlebot.html">
+                <span class="proj-num">02</span>
+                <div class="proj-info">
+                  <span class="proj-name">1‑lb Battle Bot</span>
+                  <span class="proj-desc">Designed and built a one-pound plastic battle bot to compete and learn with the UMass Robotics Club.</span>
+                </div>
+                <span class="proj-tag">Mechanical</span>
+                <span class="proj-arrow">→</span>
+              </a>
+            </li>
+
+          </ul>
         </div>
       </section>
 
@@ -226,7 +261,11 @@
       </div>
     </footer>
 
+    <div class="preview-cursor" id="previewCursor" aria-hidden="true">
+      <img class="preview-cursor__img" id="previewImg" src="" alt="" />
+      <video class="preview-cursor__vid" id="previewVid" muted playsinline loop></video>
+    </div>
+
     <script src="./main.js" defer></script>
   </body>
-  </html>
-
+</html>

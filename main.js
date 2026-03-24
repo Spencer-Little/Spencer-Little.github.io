@@ -1,111 +1,101 @@
-// Set current year in footer
-const yearEl = document.getElementById('year');
-if (yearEl) {
-  yearEl.textContent = new Date().getFullYear();
-}
+// ── Year ───────────────────────────────────────────────────────────────────────
+document.getElementById('year').textContent = new Date().getFullYear();
 
-// Image rotator for simple slideshows (e.g., Rover)
-// Usage: <div class="media-rotator" data-interval="3000"> <img ...> <img ...> </div>
-(function initMediaRotators() {
-  const rotators = Array.from(document.querySelectorAll('.media-rotator'));
-  if (!rotators.length) return;
+// ── Media rotators ─────────────────────────────────────────────────────────────
+(function () {
+  var prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  document.querySelectorAll('.media-rotator').forEach(function (el) {
+    var slides = Array.from(el.querySelectorAll('img, video'));
+    if (!slides.length) return;
 
-  rotators.forEach((el) => {
-    const slides = Array.from(el.querySelectorAll('img, video'));
-    if (slides.length === 0) return;
-
-    // Ensure videos are muted/inline for autoplay
-    slides.forEach((s) => {
-      if (s.tagName === 'VIDEO') {
-        s.muted = true; s.playsInline = true; s.setAttribute('playsinline', '');
-      }
+    slides.forEach(function (s) {
+      if (s.tagName === 'VIDEO') { s.muted = true; s.playsInline = true; }
     });
 
-    let idx = 0;
-    let timer = null;
-    let onEnded = null;
-    const baseInterval = Math.max(1200, parseInt(el.getAttribute('data-interval') || '3000', 10));
+    var idx = 0;
+    var interval = Math.max(1200, parseInt(el.dataset.interval || '3000', 10));
+    var timer = null;
 
     function show(i) {
-      // Hide current
-      slides.forEach((s, k) => {
-        if (k !== i && s.classList.contains('is-active')) {
-          if (s.tagName === 'VIDEO') {
-            try { s.pause(); s.currentTime = 0; } catch (_) {}
-          }
+      slides.forEach(function (s, k) {
+        if (k === i) {
+          s.classList.add('is-active');
+          if (s.tagName === 'VIDEO') { s.currentTime = 0; s.play().catch(function(){}); }
+        } else {
           s.classList.remove('is-active');
+          if (s.tagName === 'VIDEO') { s.pause(); s.currentTime = 0; }
         }
       });
-      // Show new
-      const nextEl = slides[i];
-      nextEl.classList.add('is-active');
-      if (nextEl.tagName === 'VIDEO') {
-        try { nextEl.currentTime = 0; } catch (_) {}
-        nextEl.play().catch(() => {});
-      }
-    }
-
-    function clearTimers() {
-      if (timer) { clearInterval(timer); timer = null; }
-      const current = slides[idx];
-      if (onEnded && current && current.tagName === 'VIDEO') {
-        current.removeEventListener('ended', onEnded);
-        onEnded = null;
-      }
-    }
-
-    function schedule() {
-      clearTimers();
-      const current = slides[idx];
-
-      // If current is a non-looping video, wait for it to finish
-      if (current && current.tagName === 'VIDEO' && !current.loop) {
-        onEnded = () => { next(); };
-        current.addEventListener('ended', onEnded, { once: true });
-        return;
-      }
-
-      // Otherwise use time-based rotation
-      timer = setInterval(next, baseInterval);
     }
 
     function next() {
-      const current = slides[idx];
-      if (current && current.tagName === 'VIDEO') {
-        try { current.pause(); current.currentTime = 0; } catch (_) {}
-      }
-      current && current.classList.remove('is-active');
-
       idx = (idx + 1) % slides.length;
       show(idx);
-      if (!(prefersReducedMotion || slides.length < 2)) schedule();
     }
 
-    function pause() {
-      clearTimers();
-      const current = slides[idx];
-      if (current && current.tagName === 'VIDEO') current.pause();
-    }
-    function resume() {
-      const current = slides[idx];
-      if (current && current.tagName === 'VIDEO') current.play().catch(() => {});
-      if (!(prefersReducedMotion || slides.length < 2)) schedule();
+    function startTimer() {
+      if (prefersReduced || slides.length < 2) return;
+      timer = setInterval(next, interval);
     }
 
-    // Initialize
-    show(idx);
-    if (!(prefersReducedMotion || slides.length < 2)) schedule();
+    function stopTimer() {
+      if (timer) { clearInterval(timer); timer = null; }
+    }
 
-    // Interaction hooks
-    el.addEventListener('mouseenter', pause);
-    el.addEventListener('mouseleave', resume);
-    el.addEventListener('focusin', pause);
-    el.addEventListener('focusout', resume);
+    show(0);
+    startTimer();
 
-    document.addEventListener('visibilitychange', () => {
-      if (document.hidden) pause(); else resume();
+    el.addEventListener('mouseenter', stopTimer);
+    el.addEventListener('mouseleave', startTimer);
+    document.addEventListener('visibilitychange', function () {
+      document.hidden ? stopTimer() : startTimer();
     });
   });
+})();
+
+// ── Cursor preview ─────────────────────────────────────────────────────────────
+(function () {
+  var cursor = document.getElementById('previewCursor');
+  var imgEl  = document.getElementById('previewImg');
+  var vidEl  = document.getElementById('previewVid');
+  if (!cursor || !imgEl || !vidEl) return;
+  if (window.matchMedia('(hover: none)').matches) return;
+
+  var mx = 0, my = 0, visible = false;
+
+  document.addEventListener('mousemove', function (e) {
+    mx = e.clientX; my = e.clientY;
+    if (visible) {
+      cursor.style.left = mx + 'px';
+      cursor.style.top  = my + 'px';
+    }
+  });
+
+  function show(src) {
+    var isVid = src.slice(-4) === '.mp4';
+    imgEl.style.display = isVid ? 'none' : 'block';
+    vidEl.style.display = isVid ? 'block' : 'none';
+    if (isVid) { if (vidEl.getAttribute('src') !== src) vidEl.src = src; vidEl.play().catch(function(){}); }
+    else        { if (imgEl.getAttribute('src') !== src) imgEl.src = src; vidEl.pause(); }
+    cursor.style.left = mx + 'px';
+    cursor.style.top  = my + 'px';
+    cursor.classList.add('is-active');
+    visible = true;
+  }
+
+  function hide() {
+    cursor.classList.remove('is-active');
+    visible = false;
+    vidEl.pause();
+  }
+
+  document.querySelectorAll('.proj-item[data-preview]').forEach(function (item) {
+    item.addEventListener('mouseenter', function () {
+      show(item.dataset.preview);
+    });
+    item.addEventListener('mouseleave', hide);
+  });
+
+  document.addEventListener('mouseleave', hide);
 })();
