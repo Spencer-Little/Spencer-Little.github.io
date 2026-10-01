@@ -126,8 +126,15 @@ body {
   .hero::before { display: none; }
   .hero-inner { flex-direction: column-reverse; align-items: flex-start; gap: 24px; }
   .avatar--lg { width: 72px; height: 72px; box-shadow: none; }
-  .nav { gap: 18px; }
+  .header-inner { padding: 0 20px; }
+  .brand { font-size: 0.85rem; }
+  .nav { gap: 12px; }
+  .nav a { font-size: 0.76rem; }
   .nav-long { display: none; }
+}
+@media (max-width: 400px) {
+  .nav { gap: 9px; }
+  .nav a { font-size: 0.72rem; }
 }
 
 /* ── Sections ─────────────────────────────────────────────── */
@@ -311,7 +318,6 @@ body {
   letter-spacing: -0.03em;
   color: #f0f0f0;
 }
-.subsection--archive { margin-top: 56px; }
 .subsection--archive .subsection-title {
   font-size: 0.95rem;
   font-weight: 500;
