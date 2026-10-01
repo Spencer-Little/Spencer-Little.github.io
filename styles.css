@@ -372,6 +372,7 @@ a { color: inherit; }
   background: var(--paper-2);
 }
 img.project-hero-media { object-fit: contain; }
+.project-hero-media.hero-contain { object-fit: contain; background: #0d0d0d; }
 .project-content { padding: 36px 28px 96px; }
 
 .back-link {
@@ -589,6 +590,7 @@ img.project-hero-media { object-fit: contain; }
   .proj-list--archive .proj-desc { white-space: normal; }
 
   .project-hero { padding: 16px 20px 0; }
+  .project-hero-media.hero-contain { aspect-ratio: 4 / 5; max-height: none; }
   .project-content { padding: 28px 20px 72px; }
   .project-gallery,
   .project-gallery--wide { grid-template-columns: 1fr; }
