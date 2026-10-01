@@ -5,6 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Laelaps Quadruped — Spencer Little</title>
     <meta name="description" content="Custom quadruped robot designed and built from scratch as a teaching and development platform for advanced robotics software and legged locomotion research." />
+    <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml" />
+    <link rel="icon" href="../assets/favicon-32.png" sizes="32x32" type="image/png" />
+    <link rel="apple-touch-icon" href="../assets/apple-touch-icon.png" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link rel="stylesheet" href="../styles.css" />
@@ -15,12 +18,12 @@
         <a class="brand" href="../index.html">Spencer Little</a>
         <nav class="nav">
           <a href="../index.html#publications">Publications</a>
-          <a href="../index.html#forged-motus">Forged Motus</a>
-          <a href="../index.html#projects">Projects</a>
-          <a href="../index.html#team-projects">Team</a>
-          <a href="../index.html#personal-project-archive">Archive</a>
+          <a href="../index.html#personal-projects">Personal<span class="nav-long"> Projects</span></a>
+          <a href="../index.html#team-projects">Team<span class="nav-long"> Projects</span></a>
+          <a href="../index.html#archive">Archive</a>
         </nav>
       </div>
+      <img class="glider" src="../assets/plane.svg" alt="" aria-hidden="true" width="26" height="19" />
     </header>
 
     <main>
@@ -29,15 +32,26 @@
       </div>
 
       <div class="container project-content">
-        <a href="../index.html" class="back-link">← All Projects</a>
+        <a href="../index.html" class="back-link">← All projects</a>
         <div class="project-header">
           <h1>Laelaps Quadruped</h1>
           <span class="proj-tag">Robotics</span>
         </div>
+        <div class="project-layout">
+          <div class="project-main">
         <div class="project-body">
           <p>Designed, CADed, and built Laelaps from scratch — a quadruped robot intended as a teaching and development platform for advanced robotics software.</p>
           <p>Every mechanical and electrical component was designed specifically for the platform, with the goal of creating a robot that is simple enough to understand end-to-end but capable enough to run meaningful locomotion experiments.</p>
           <p>Laelaps was built to give students hands-on experience with legged robot control, from low-level motor control to gait generation and state estimation.</p>
+        </div>
+          </div>
+          <aside class="spec-sheet" aria-labelledby="specs-title">
+            <h2 id="specs-title">Key specs</h2>
+            <dl>
+              <div class="row"><dt>Scope</dt><dd>Designed, CADed, and built from scratch</dd></div>
+              <div class="row"><dt>Purpose</dt><dd>Teaching platform for legged-robot software</dd></div>
+            </dl>
+          </aside>
         </div>
       </div>
     </main>
@@ -45,6 +59,7 @@
     <footer class="site-footer">
       <div class="container">
         <p>© <span id="year"></span> Spencer Little</p>
+        <p><a href="https://github.com/Spencer-Little">GitHub</a></p>
       </div>
     </footer>
     <script src="../main.js" defer></script>
