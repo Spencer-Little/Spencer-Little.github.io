@@ -28,15 +28,28 @@
       </div>
 
       <div class="container project-content">
-        <a href="../index.html" class="back-link">← All Projects</a>
+        <a href="../index.html" class="back-link">← All projects</a>
         <div class="project-header">
           <h1>UMass CubeSat Lab — 6U BMS &amp; Power System</h1>
           <span class="proj-tag">Space · Power Systems</span>
         </div>
+        <div class="project-layout">
+          <div class="project-main">
         <div class="project-body">
           <p>Designed a complete power system for a 6U CubeSat, covering everything from battery chemistry selection to PCB layout and solar panel manufacturing.</p>
           <p>The battery management system (BMS) handles cell balancing, over-current protection, and state-of-charge estimation for the spacecraft's primary energy storage. The design had to meet strict mass and volume constraints while surviving the thermal cycling of low Earth orbit.</p>
           <p>Solar panels were manufactured and integrated into the design, and the power system was architected to distribute regulated voltages to all onboard subsystems. This was a full-stack power electronics project from chemistry to flight hardware.</p>
+        </div>
+          </div>
+          <aside class="spec-sheet" aria-labelledby="specs-title">
+            <h2 id="specs-title">Key specs</h2>
+            <dl>
+              <div class="row"><dt>Lab</dt><dd>UMass CubeSat Lab</dd></div>
+              <div class="row"><dt>Form factor</dt><dd>6U CubeSat</dd></div>
+              <div class="row"><dt>BMS</dt><dd>Cell balancing · over-current protection · state-of-charge estimation</dd></div>
+              <div class="row"><dt>Also</dt><dd>Solar panel manufacturing · regulated power distribution</dd></div>
+            </dl>
+          </aside>
         </div>
       </div>
     </main>
@@ -44,6 +57,7 @@
     <footer class="site-footer">
       <div class="container">
         <p>© <span id="year"></span> Spencer Little</p>
+        <p><a href="https://github.com/Spencer-Little">GitHub</a></p>
       </div>
     </footer>
     <script src="../main.js" defer></script>

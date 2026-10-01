@@ -28,23 +28,36 @@
       </div>
 
       <div class="container project-content">
-        <a href="../index.html" class="back-link">← All Projects</a>
+        <a href="../index.html" class="back-link">← All projects</a>
         <div class="project-header">
           <h1>Prestoe — Upgrading a Humanoid Robot</h1>
           <span class="proj-tag">Humanoid · Motor Control</span>
         </div>
+        <div class="project-layout">
+          <div class="project-main">
         <div class="project-body">
           <p>Prestoe is a humanoid robot platform that I upgraded with new, stronger motor drivers, significantly increasing the power available to its actuators and enabling faster, more dynamic motion.</p>
           <p>The upgrade involved replacing the original battery system with a new high-voltage pack, integrating new motor drivers, and switching the communication bus to CAN-FD for higher bandwidth and lower latency.</p>
           <p>The result is a noticeably faster and more capable robot, with a communication architecture that can support future expansion as more joints and sensors are added to the platform.</p>
         </div>
-        <div class="project-gallery"><img src="../assets/prestoe.jpg" alt="Prestoe humanoid robot upgrade" /></div>
+          </div>
+          <aside class="spec-sheet" aria-labelledby="specs-title">
+            <h2 id="specs-title">Key specs</h2>
+            <dl>
+              <div class="row"><dt>Platform</dt><dd>Humanoid robot</dd></div>
+              <div class="row"><dt>Upgrades</dt><dd>New battery pack · stronger motor drivers</dd></div>
+              <div class="row"><dt>Bus</dt><dd>CAN-FD</dd></div>
+            </dl>
+          </aside>
+        </div>
+        <div class="project-gallery"><figure><img src="../assets/prestoe.jpg" alt="Prestoe on its test rig" /><figcaption>Fig. 1 — Prestoe on its test rig</figcaption></figure></div>
       </div>
     </main>
 
     <footer class="site-footer">
       <div class="container">
         <p>© <span id="year"></span> Spencer Little</p>
+        <p><a href="https://github.com/Spencer-Little">GitHub</a></p>
       </div>
     </footer>
     <script src="../main.js" defer></script>

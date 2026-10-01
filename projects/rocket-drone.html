@@ -28,23 +28,37 @@
       </div>
 
       <div class="container project-content">
-        <a href="../index.html" class="back-link">← All Projects</a>
+        <a href="../index.html" class="back-link">← All projects</a>
         <div class="project-header">
           <h1>UMass Rocket Team — In-Flight Deployable Drone</h1>
           <span class="proj-tag">Aerospace</span>
         </div>
+        <div class="project-layout">
+          <div class="project-main">
         <div class="project-body">
           <p>Designed and built a drone that deploys autonomously from the nose cone of a 14-foot competition rocket during its descent phase.</p>
           <p>The drone uses onboard sensors and GPS to detect deployment, stabilize, and navigate to a landing zone autonomously — requiring compact electronics, reliable deployment mechanics, and robust flight software in a tightly constrained form factor.</p>
           <p>This project combined aerospace, embedded systems, and autonomous flight disciplines, and was built and flown as part of UMass Amherst's competitive rocketry program.</p>
         </div>
-        <div class="project-gallery"><img src="../assets/Drone-1.jpg" alt="Deployable drone prototype" /><img src="../assets/Drone-2.jpg" alt="Deployable drone during testing" /></div>
+          </div>
+          <aside class="spec-sheet" aria-labelledby="specs-title">
+            <h2 id="specs-title">Key specs</h2>
+            <dl>
+              <div class="row"><dt>Team</dt><dd>UMass Rocket Team</dd></div>
+              <div class="row"><dt>Rocket</dt><dd>14-foot competition rocket</dd></div>
+              <div class="row"><dt>Deployment</dt><dd>From the nose cone, during descent</dd></div>
+              <div class="row"><dt>Navigation</dt><dd>Onboard sensors · GPS · autonomous landing</dd></div>
+            </dl>
+          </aside>
+        </div>
+        <div class="project-gallery"><figure><img src="../assets/Drone-2.jpg" alt="Flight electronics stack in the airframe" /><figcaption>Fig. 1 — Flight electronics stack in the airframe</figcaption></figure></div>
       </div>
     </main>
 
     <footer class="site-footer">
       <div class="container">
         <p>© <span id="year"></span> Spencer Little</p>
+        <p><a href="https://github.com/Spencer-Little">GitHub</a></p>
       </div>
     </footer>
     <script src="../main.js" defer></script>

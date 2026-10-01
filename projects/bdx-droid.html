@@ -28,23 +28,37 @@
       </div>
 
       <div class="container project-content">
-        <a href="../index.html" class="back-link">← All Projects</a>
+        <a href="../index.html" class="back-link">← All projects</a>
         <div class="project-header">
           <h1>BD-X Style Droid — Brushless Motor Driver &amp; Reinforcement Learning</h1>
           <span class="proj-tag">Motor Control · RL</span>
         </div>
+        <div class="project-layout">
+          <div class="project-main">
         <div class="project-body">
           <p>This project is a BD-X-style droid: a small, expressive bipedal character robot in the style of Disney's BD-X, built as a platform for custom brushless motor control and sim-to-real reinforcement learning.</p>
           <p>The droid's actuators are driven by a 24-volt brushless motor driver that I designed and built. It evolved from a drop-in replacement for the stock Unitree Go2 motor drivers, and it gives full control over the field-oriented control loop and communication parameters, enabling custom control strategies and lower-level hardware access.</p>
           <p>On the software side, I am using NVIDIA Isaac Sim and Isaac Lab to train reinforcement learning policies for the droid's locomotion — bridging the gap between custom hardware and modern sim-to-real RL workflows.</p>
         </div>
-        <div class="project-gallery"><img src="../assets/vivo.jpg" alt="BD-X style droid brushless motor driver PCB render" /></div>
+          </div>
+          <aside class="spec-sheet" aria-labelledby="specs-title">
+            <h2 id="specs-title">Key specs</h2>
+            <dl>
+              <div class="row"><dt>Platform</dt><dd>BD-X-style droid</dd></div>
+              <div class="row"><dt>Driver</dt><dd>24 V brushless · custom FOC firmware</dd></div>
+              <div class="row"><dt>Learning</dt><dd>Isaac Sim · Isaac Lab (reinforcement learning)</dd></div>
+              <div class="row"><dt>Lineage</dt><dd>Evolved from a Unitree Go2 drop-in driver</dd></div>
+            </dl>
+          </aside>
+        </div>
+        <div class="project-gallery"><figure><img src="../assets/vivo.jpg" alt="Motor driver PCB, 3D render" /><figcaption>Fig. 1 — Motor driver PCB, 3D render</figcaption></figure></div>
       </div>
     </main>
 
     <footer class="site-footer">
       <div class="container">
         <p>© <span id="year"></span> Spencer Little</p>
+        <p><a href="https://github.com/Spencer-Little">GitHub</a></p>
       </div>
     </footer>
     <script src="../main.js" defer></script>

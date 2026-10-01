@@ -28,15 +28,27 @@
       </div>
 
       <div class="container project-content">
-        <a href="../index.html" class="back-link">← All Projects</a>
+        <a href="../index.html" class="back-link">← All projects</a>
         <div class="project-header">
           <h1>6U Orientation Demo — 3-DOF Gimbal</h1>
           <span class="proj-tag">Space · Control Systems</span>
         </div>
+        <div class="project-layout">
+          <div class="project-main">
         <div class="project-body">
           <p>A team project to prove and test attitude control concepts for a 6U CubeSat using a 3-degrees-of-freedom benchtop gimbal testbed.</p>
           <p>The system demonstrated closed-loop attitude control, validating sensor fusion algorithms and actuation strategies before committing them to flight hardware. The gimbal allowed the team to simulate orbital disturbance torques and test the controller's response.</p>
           <p>This project served as a risk-reduction exercise for the broader CubeSat program, building confidence in the control architecture through hands-on hardware testing.</p>
+        </div>
+          </div>
+          <aside class="spec-sheet" aria-labelledby="specs-title">
+            <h2 id="specs-title">Key specs</h2>
+            <dl>
+              <div class="row"><dt>Testbed</dt><dd>3-DOF benchtop gimbal</dd></div>
+              <div class="row"><dt>Target</dt><dd>6U CubeSat attitude control</dd></div>
+              <div class="row"><dt>Validated</dt><dd>Sensor fusion · actuation · closed-loop control</dd></div>
+            </dl>
+          </aside>
         </div>
       </div>
     </main>
@@ -44,6 +56,7 @@
     <footer class="site-footer">
       <div class="container">
         <p>© <span id="year"></span> Spencer Little</p>
+        <p><a href="https://github.com/Spencer-Little">GitHub</a></p>
       </div>
     </footer>
     <script src="../main.js" defer></script>

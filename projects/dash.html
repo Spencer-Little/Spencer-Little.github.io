@@ -24,27 +24,41 @@
 
     <main>
       <div class="project-hero">
-        <img src="../assets/Dash.jpg" alt="Dash brushless motor driver front" class="project-hero-media" />
+        <img src="../assets/Dash.jpg" alt="Dash humanoid, CAD view with joint axes" class="project-hero-media" />
       </div>
 
       <div class="container project-content">
-        <a href="../index.html" class="back-link">← All Projects</a>
+        <a href="../index.html" class="back-link">← All projects</a>
         <div class="project-header">
           <h1>Dash — Brushless Motor Driver &amp; Electrical Stack</h1>
           <span class="proj-tag">Motor Control</span>
         </div>
+        <div class="project-layout">
+          <div class="project-main">
         <div class="project-body">
           <p>Dash is a high-power brushless motor driver built for a new humanoid robot platform, rated at 48 volts and 70 amps continuous — enough to drive the large actuators needed for full-body humanoid motion.</p>
           <p>In addition to the motor driver, I am designing the broader electrical stack for the robot, including power distribution, communication backplane, and sensor integration.</p>
           <p>Dash communicates over CAN-FD, giving the robot's high-level compute a fast, reliable link to the motor drivers and sensor network.</p>
         </div>
-        <div class="project-gallery"><img src="../assets/Dash.jpg" alt="Dash motor driver front" /><img src="../assets/dash2.jpg" alt="Dash motor driver rear" /></div>
+          </div>
+          <aside class="spec-sheet" aria-labelledby="specs-title">
+            <h2 id="specs-title">Key specs</h2>
+            <dl>
+              <div class="row"><dt>Platform</dt><dd>Humanoid robot</dd></div>
+              <div class="row"><dt>Driver</dt><dd>48 V · 70 A continuous</dd></div>
+              <div class="row"><dt>Bus</dt><dd>CAN-FD</dd></div>
+              <div class="row"><dt>Scope</dt><dd>Motor driver · power distribution · communication backplane · sensor integration</dd></div>
+            </dl>
+          </aside>
+        </div>
+        <div class="project-gallery"><figure><img src="../assets/dash2.jpg" alt="Dash humanoid hardware" /><figcaption>Fig. 1 — Dash humanoid hardware</figcaption></figure></div>
       </div>
     </main>
 
     <footer class="site-footer">
       <div class="container">
         <p>© <span id="year"></span> Spencer Little</p>
+        <p><a href="https://github.com/Spencer-Little">GitHub</a></p>
       </div>
     </footer>
     <script src="../main.js" defer></script>

@@ -24,27 +24,40 @@
 
     <main>
       <div class="project-hero">
-        <img src="../assets/rover-1.jpg" alt="Warehouse rover navigating aisle" class="project-hero-media" />
+        <img src="../assets/rover-1.jpg" alt="Rover platform, 3D render" class="project-hero-media" />
       </div>
 
       <div class="container project-content">
-        <a href="../index.html" class="back-link">← All Projects</a>
+        <a href="../index.html" class="back-link">← All projects</a>
         <div class="project-header">
           <h1>Automated Warehouse Delivery Rover</h1>
           <span class="proj-tag">ROS 2 · Robotics</span>
         </div>
+        <div class="project-layout">
+          <div class="project-main">
         <div class="project-body">
           <p>Built a fully autonomous mobile robot to transport chemical containers from a shipping and receiving room to laboratories within a research building — eliminating the need for manual delivery runs.</p>
           <p>The navigation stack is built on ROS 2 with Nav2 for autonomous path planning and obstacle avoidance, SLAM Toolbox for simultaneous localization and mapping, and Intel RealSense cameras for depth-based perception.</p>
           <p>The system was designed for safe operation around people, with robust stop behaviors and sensor fusion ensuring reliable performance in a dynamic real-world environment.</p>
         </div>
-        <div class="project-gallery"><img src="../assets/rover-1.jpg" alt="Warehouse rover in aisle" /><img src="../assets/rover-2.jpg" alt="Warehouse rover close-up" /><img src="../assets/rover-3.jpg" alt="Warehouse rover docking" /></div>
+          </div>
+          <aside class="spec-sheet" aria-labelledby="specs-title">
+            <h2 id="specs-title">Key specs</h2>
+            <dl>
+              <div class="row"><dt>Stack</dt><dd>ROS 2 · Nav2 · SLAM Toolbox</dd></div>
+              <div class="row"><dt>Perception</dt><dd>Intel RealSense depth cameras</dd></div>
+              <div class="row"><dt>Task</dt><dd>Autonomous chemical container delivery</dd></div>
+            </dl>
+          </aside>
+        </div>
+        <div class="project-gallery"><figure><img src="../assets/rover-2.jpg" alt="Navigation costmap view" /><figcaption>Fig. 1 — Navigation costmap view</figcaption></figure><figure><img src="../assets/rover-3.jpg" alt="Point-cloud visualization" /><figcaption>Fig. 2 — Point-cloud visualization</figcaption></figure></div>
       </div>
     </main>
 
     <footer class="site-footer">
       <div class="container">
         <p>© <span id="year"></span> Spencer Little</p>
+        <p><a href="https://github.com/Spencer-Little">GitHub</a></p>
       </div>
     </footer>
     <script src="../main.js" defer></script>
