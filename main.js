@@ -120,13 +120,3 @@ document.getElementById('year').textContent = new Date().getFullYear();
   window.addEventListener('resize', update);
   update();
 })();
-
-// ── Hero flight path: skip the animation for reduced-motion users ──────────────
-(function () {
-  var svg = document.querySelector('.hero-flight');
-  if (!svg || !svg.pauseAnimations) return;
-  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-    svg.pauseAnimations();
-    svg.setCurrentTime(10);
-  }
-})();

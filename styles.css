@@ -144,6 +144,16 @@ a { color: inherit; }
   color: var(--ink-2);
 }
 
+.lead a {
+  color: var(--ink);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 4px;
+  text-decoration-color: var(--ink-3);
+  transition: color 120ms ease, text-decoration-color 120ms ease;
+}
+.lead a:hover { color: var(--accent); text-decoration-color: var(--accent); }
+
 .glance { margin: 0; border-top: 1px solid var(--ink); }
 .glance > div {
   display: grid;
