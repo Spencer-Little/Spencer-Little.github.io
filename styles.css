@@ -483,6 +483,10 @@ img.project-hero-media { object-fit: contain; }
   border: 1px solid var(--ink);
   background: var(--paper-2);
 }
+/* Two-up row for detailed renders; .natural shows an image uncropped */
+.project-gallery--wide { grid-template-columns: repeat(2, minmax(0, 1fr)); align-items: start; }
+.project-gallery figure.natural img { aspect-ratio: auto; height: auto; }
+
 .project-gallery figcaption {
   margin-top: 8px;
   font-family: var(--mono);
@@ -586,7 +590,8 @@ img.project-hero-media { object-fit: contain; }
 
   .project-hero { padding: 16px 20px 0; }
   .project-content { padding: 28px 20px 72px; }
-  .project-gallery { grid-template-columns: 1fr; }
+  .project-gallery,
+  .project-gallery--wide { grid-template-columns: 1fr; }
 }
 
 @media (max-width: 400px) {
