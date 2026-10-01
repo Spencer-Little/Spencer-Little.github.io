@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Dash — Brushless Motor Driver &amp; Electrical Stack — Spencer Little</title>
-    <meta name="description" content="48V 70A continuous brushless motor driver and full electrical stack design for a humanoid robot platform, including an Ethernet-to-CAN-FD interface board." />
+    <meta name="description" content="48V 70A continuous brushless motor driver and full electrical stack design for a humanoid robot platform, communicating over CAN-FD." />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link rel="stylesheet" href="../styles.css" />
@@ -15,10 +15,8 @@
         <a class="brand" href="../index.html">Spencer Little</a>
         <nav class="nav">
           <a href="../index.html#publications">Publications</a>
-          <a href="../index.html#forged-motus">Forged Motus</a>
-          <a href="../index.html#projects">Projects</a>
-          <a href="../index.html#team-projects">Team</a>
-          <a href="../index.html#personal-project-archive">Archive</a>
+          <a href="../index.html#personal-projects">Personal<span class="nav-long"> Projects</span></a>
+          <a href="../index.html#team-projects">Team<span class="nav-long"> Projects</span></a>
         </nav>
       </div>
     </header>
@@ -37,7 +35,7 @@
         <div class="project-body">
           <p>Dash is a high-power brushless motor driver built for a new humanoid robot platform, rated at 48 volts and 70 amps continuous — enough to drive the large actuators needed for full-body humanoid motion.</p>
           <p>In addition to the motor driver, I am designing the broader electrical stack for the robot, including power distribution, communication backplane, and sensor integration.</p>
-          <p>Currently working on an Ethernet-to-CAN-FD interface board in Altium Designer, which will bridge the robot's high-level compute with the low-level motor and sensor network.</p>
+          <p>Dash communicates over CAN-FD, giving the robot's high-level compute a fast, reliable link to the motor drivers and sensor network.</p>
         </div>
         <div class="project-gallery"><img src="../assets/Dash.jpg" alt="Dash motor driver front" /><img src="../assets/dash2.jpg" alt="Dash motor driver rear" /></div>
       </div>
