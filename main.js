@@ -99,3 +99,34 @@ document.getElementById('year').textContent = new Date().getFullYear();
 
   document.addEventListener('mouseleave', hide);
 })();
+
+// ── Header glider (scroll progress) ────────────────────────────────────────────
+(function () {
+  var header = document.querySelector('.site-header');
+  if (!header) return;
+  var ticking = false;
+
+  function update() {
+    ticking = false;
+    var el = document.documentElement;
+    var max = el.scrollHeight - el.clientHeight;
+    var p = max > 0 ? Math.min(1, Math.max(0, (window.scrollY || el.scrollTop) / max)) : 0;
+    header.style.setProperty('--p', p.toFixed(4));
+  }
+
+  window.addEventListener('scroll', function () {
+    if (!ticking) { ticking = true; requestAnimationFrame(update); }
+  }, { passive: true });
+  window.addEventListener('resize', update);
+  update();
+})();
+
+// ── Hero flight path: skip the animation for reduced-motion users ──────────────
+(function () {
+  var svg = document.querySelector('.hero-flight');
+  if (!svg || !svg.pauseAnimations) return;
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    svg.pauseAnimations();
+    svg.setCurrentTime(10);
+  }
+})();
