@@ -487,6 +487,7 @@ img.project-hero-media { object-fit: contain; }
 /* Two-up row for detailed renders; .natural shows an image uncropped */
 .project-gallery--wide { grid-template-columns: repeat(2, minmax(0, 1fr)); align-items: start; }
 .project-gallery figure.natural img { aspect-ratio: auto; height: auto; }
+.project-gallery figure.span-all { grid-column: 1 / -1; }
 
 .project-gallery figcaption {
   margin-top: 8px;
